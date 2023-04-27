@@ -1,0 +1,1 @@
+=SUM(A0:B2, C0, =AVG(C1, D0), =SUM(A2, B2))
