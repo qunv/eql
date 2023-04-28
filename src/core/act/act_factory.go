@@ -5,10 +5,10 @@ import (
 )
 
 func GetActSpec(ctx antlr.IActSpecContext) Act {
-	if ctx.Act().SUM() != nil {
+	if ctx.Act().Math().SUM() != nil {
 		return newSum(ctx)
 	}
-	if ctx.Act().AVG() != nil {
+	if ctx.Act().Math().AVG() != nil {
 		return newAvg(ctx)
 	}
 	panic("Act not support!")

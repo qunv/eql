@@ -22,10 +22,18 @@ func (e param) evaluate(input [][]float64) float64 {
 		return GetActSpec(e.ctx.ActSpec()).Calculate(input)
 	}
 
+	if e.ctx.Number() != nil {
+		return utils.GetNumber(e.ctx.Number())
+	}
+
+	if e.ctx.Expression() != nil {
+		return NewExpression(e.ctx.Expression(), input).Evaluate()
+	}
+
 	if e.ctx.COLON() != nil {
-		magic1 := e.ctx.Magic(0)
+		magic1 := e.ctx.Def(0)
 		row1, col1 := utils.GetRowAndColum(magic1)
-		magic2 := e.ctx.Magic(1)
+		magic2 := e.ctx.Def(1)
 		row2, col2 := utils.GetRowAndColum(magic2)
 		var values []float64
 		for i := row1; i <= row2; i++ {
@@ -33,6 +41,6 @@ func (e param) evaluate(input [][]float64) float64 {
 		}
 		return e.f(values)
 	}
-	row, col := utils.GetRowAndColum(e.ctx.Magic(0))
+	row, col := utils.GetRowAndColum(e.ctx.Def(0))
 	return input[row][col]
 }

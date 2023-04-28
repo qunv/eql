@@ -18,12 +18,14 @@ expression
 term: factor ((MULT | DIV) factor)*;
 
 actSpec: act LPAREN (param (SEMI param)*) RPAREN;
-act: SUM | AVG;
-param: magic (COLON magic)? | actSpec;
-magic: IDENTIFIER NUMBER;
+act: math;
+math: SUM | AVG;
+param: def (COLON def)? | number | actSpec | expression ;
+def: IDENTIFIER DIGIT;
+number: MINUS? DIGIT;
 factor:
-    NUMBER
-    | magic
+    number
+    | def
     | actSpec
     | LPAREN expression RPAREN
     ;

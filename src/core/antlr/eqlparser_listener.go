@@ -1,4 +1,4 @@
-// Code generated from src/antlr/EqlParser.g4 by ANTLR 4.12.0. DO NOT EDIT.
+// Code generated from src/core/antlr/EqlParser.g4 by ANTLR 4.12.0. DO NOT EDIT.
 
 package antlr // EqlParser
 import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
@@ -25,11 +25,17 @@ type EqlParserListener interface {
 	// EnterAct is called when entering the act production.
 	EnterAct(c *ActContext)
 
+	// EnterMath is called when entering the math production.
+	EnterMath(c *MathContext)
+
 	// EnterParam is called when entering the param production.
 	EnterParam(c *ParamContext)
 
-	// EnterMagic is called when entering the magic production.
-	EnterMagic(c *MagicContext)
+	// EnterDef is called when entering the def production.
+	EnterDef(c *DefContext)
+
+	// EnterNumber is called when entering the number production.
+	EnterNumber(c *NumberContext)
 
 	// EnterFactor is called when entering the factor production.
 	EnterFactor(c *FactorContext)
@@ -52,11 +58,17 @@ type EqlParserListener interface {
 	// ExitAct is called when exiting the act production.
 	ExitAct(c *ActContext)
 
+	// ExitMath is called when exiting the math production.
+	ExitMath(c *MathContext)
+
 	// ExitParam is called when exiting the param production.
 	ExitParam(c *ParamContext)
 
-	// ExitMagic is called when exiting the magic production.
-	ExitMagic(c *MagicContext)
+	// ExitDef is called when exiting the def production.
+	ExitDef(c *DefContext)
+
+	// ExitNumber is called when exiting the number production.
+	ExitNumber(c *NumberContext)
 
 	// ExitFactor is called when exiting the factor production.
 	ExitFactor(c *FactorContext)

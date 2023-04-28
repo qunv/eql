@@ -1,4 +1,4 @@
-// Code generated from src/antlr/EqlParser.g4 by ANTLR 4.12.0. DO NOT EDIT.
+// Code generated from src/core/antlr/EqlParser.g4 by ANTLR 4.12.0. DO NOT EDIT.
 
 package antlr // EqlParser
 import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
@@ -56,17 +56,29 @@ func (s *BaseEqlParserListener) EnterAct(ctx *ActContext) {}
 // ExitAct is called when production act is exited.
 func (s *BaseEqlParserListener) ExitAct(ctx *ActContext) {}
 
+// EnterMath is called when production math is entered.
+func (s *BaseEqlParserListener) EnterMath(ctx *MathContext) {}
+
+// ExitMath is called when production math is exited.
+func (s *BaseEqlParserListener) ExitMath(ctx *MathContext) {}
+
 // EnterParam is called when production param is entered.
 func (s *BaseEqlParserListener) EnterParam(ctx *ParamContext) {}
 
 // ExitParam is called when production param is exited.
 func (s *BaseEqlParserListener) ExitParam(ctx *ParamContext) {}
 
-// EnterMagic is called when production magic is entered.
-func (s *BaseEqlParserListener) EnterMagic(ctx *MagicContext) {}
+// EnterDef is called when production def is entered.
+func (s *BaseEqlParserListener) EnterDef(ctx *DefContext) {}
 
-// ExitMagic is called when production magic is exited.
-func (s *BaseEqlParserListener) ExitMagic(ctx *MagicContext) {}
+// ExitDef is called when production def is exited.
+func (s *BaseEqlParserListener) ExitDef(ctx *DefContext) {}
+
+// EnterNumber is called when production number is entered.
+func (s *BaseEqlParserListener) EnterNumber(ctx *NumberContext) {}
+
+// ExitNumber is called when production number is exited.
+func (s *BaseEqlParserListener) ExitNumber(ctx *NumberContext) {}
 
 // EnterFactor is called when production factor is entered.
 func (s *BaseEqlParserListener) EnterFactor(ctx *FactorContext) {}

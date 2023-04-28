@@ -17,10 +17,10 @@ SEMI                    : ';';
 COLON                   : ':';
 COMMA                   : ',';
 
-SUM                     : '=SUM';
-AVG                     : '=AVG';
+SUM                     : 'SUM';
+AVG                     : 'AVG';
 
-NUMBER                     : [0-9]+;
+DIGIT                   : [0-9]+;
 IDENTIFIER              : [a-zA-Z]+;
 
 WS                      : [ \t\r\n]+ -> skip;

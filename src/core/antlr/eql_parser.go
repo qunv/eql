@@ -1,4 +1,4 @@
-// Code generated from src/antlr/EqlParser.g4 by ANTLR 4.12.0. DO NOT EDIT.
+// Code generated from src/core/antlr/EqlParser.g4 by ANTLR 4.12.0. DO NOT EDIT.
 
 package antlr // EqlParser
 import (
@@ -33,49 +33,55 @@ func eqlparserParserInit() {
 	staticData := &eqlparserParserStaticData
 	staticData.literalNames = []string{
 		"", "'+'", "'-'", "'/'", "'*'", "'('", "')'", "'{'", "'}'", "'['", "']'",
-		"'='", "';'", "':'", "','", "'=SUM'", "'=AVG'",
+		"'='", "';'", "':'", "','", "'SUM'", "'AVG'",
 	}
 	staticData.symbolicNames = []string{
 		"", "PLUS", "MINUS", "DIV", "MULT", "LPAREN", "RPAREN", "LCURLY", "RCURLY",
 		"LBRACKET", "RBRACKET", "EQUAL", "SEMI", "COLON", "COMMA", "SUM", "AVG",
-		"NUMBER", "IDENTIFIER", "WS", "EOS",
+		"DIGIT", "IDENTIFIER", "WS", "EOS",
 	}
 	staticData.ruleNames = []string{
-		"program", "statement", "expression", "term", "actSpec", "act", "param",
-		"magic", "factor",
+		"program", "statement", "expression", "term", "actSpec", "act", "math",
+		"param", "def", "number", "factor",
 	}
 	staticData.predictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 20, 76, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
-		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 1, 0, 4, 0, 20, 8, 0,
-		11, 0, 12, 0, 21, 1, 1, 1, 1, 1, 2, 1, 2, 1, 2, 5, 2, 29, 8, 2, 10, 2,
-		12, 2, 32, 9, 2, 1, 3, 1, 3, 1, 3, 5, 3, 37, 8, 3, 10, 3, 12, 3, 40, 9,
-		3, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 5, 4, 47, 8, 4, 10, 4, 12, 4, 50, 9, 4,
-		1, 4, 1, 4, 1, 5, 1, 5, 1, 6, 1, 6, 1, 6, 3, 6, 59, 8, 6, 1, 6, 3, 6, 62,
-		8, 6, 1, 7, 1, 7, 1, 7, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 3, 8,
-		74, 8, 8, 1, 8, 0, 0, 9, 0, 2, 4, 6, 8, 10, 12, 14, 16, 0, 3, 1, 0, 1,
-		2, 1, 0, 3, 4, 1, 0, 15, 16, 75, 0, 19, 1, 0, 0, 0, 2, 23, 1, 0, 0, 0,
-		4, 25, 1, 0, 0, 0, 6, 33, 1, 0, 0, 0, 8, 41, 1, 0, 0, 0, 10, 53, 1, 0,
-		0, 0, 12, 61, 1, 0, 0, 0, 14, 63, 1, 0, 0, 0, 16, 73, 1, 0, 0, 0, 18, 20,
-		3, 2, 1, 0, 19, 18, 1, 0, 0, 0, 20, 21, 1, 0, 0, 0, 21, 19, 1, 0, 0, 0,
-		21, 22, 1, 0, 0, 0, 22, 1, 1, 0, 0, 0, 23, 24, 3, 4, 2, 0, 24, 3, 1, 0,
-		0, 0, 25, 30, 3, 6, 3, 0, 26, 27, 7, 0, 0, 0, 27, 29, 3, 6, 3, 0, 28, 26,
-		1, 0, 0, 0, 29, 32, 1, 0, 0, 0, 30, 28, 1, 0, 0, 0, 30, 31, 1, 0, 0, 0,
-		31, 5, 1, 0, 0, 0, 32, 30, 1, 0, 0, 0, 33, 38, 3, 16, 8, 0, 34, 35, 7,
-		1, 0, 0, 35, 37, 3, 16, 8, 0, 36, 34, 1, 0, 0, 0, 37, 40, 1, 0, 0, 0, 38,
-		36, 1, 0, 0, 0, 38, 39, 1, 0, 0, 0, 39, 7, 1, 0, 0, 0, 40, 38, 1, 0, 0,
-		0, 41, 42, 3, 10, 5, 0, 42, 43, 5, 5, 0, 0, 43, 48, 3, 12, 6, 0, 44, 45,
-		5, 12, 0, 0, 45, 47, 3, 12, 6, 0, 46, 44, 1, 0, 0, 0, 47, 50, 1, 0, 0,
-		0, 48, 46, 1, 0, 0, 0, 48, 49, 1, 0, 0, 0, 49, 51, 1, 0, 0, 0, 50, 48,
-		1, 0, 0, 0, 51, 52, 5, 6, 0, 0, 52, 9, 1, 0, 0, 0, 53, 54, 7, 2, 0, 0,
-		54, 11, 1, 0, 0, 0, 55, 58, 3, 14, 7, 0, 56, 57, 5, 13, 0, 0, 57, 59, 3,
-		14, 7, 0, 58, 56, 1, 0, 0, 0, 58, 59, 1, 0, 0, 0, 59, 62, 1, 0, 0, 0, 60,
-		62, 3, 8, 4, 0, 61, 55, 1, 0, 0, 0, 61, 60, 1, 0, 0, 0, 62, 13, 1, 0, 0,
-		0, 63, 64, 5, 18, 0, 0, 64, 65, 5, 17, 0, 0, 65, 15, 1, 0, 0, 0, 66, 74,
-		5, 17, 0, 0, 67, 74, 3, 14, 7, 0, 68, 74, 3, 8, 4, 0, 69, 70, 5, 5, 0,
-		0, 70, 71, 3, 4, 2, 0, 71, 72, 5, 6, 0, 0, 72, 74, 1, 0, 0, 0, 73, 66,
-		1, 0, 0, 0, 73, 67, 1, 0, 0, 0, 73, 68, 1, 0, 0, 0, 73, 69, 1, 0, 0, 0,
-		74, 17, 1, 0, 0, 0, 7, 21, 30, 38, 48, 58, 61, 73,
+		4, 1, 20, 89, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
+		10, 1, 0, 4, 0, 24, 8, 0, 11, 0, 12, 0, 25, 1, 1, 1, 1, 1, 2, 1, 2, 1,
+		2, 5, 2, 33, 8, 2, 10, 2, 12, 2, 36, 9, 2, 1, 3, 1, 3, 1, 3, 5, 3, 41,
+		8, 3, 10, 3, 12, 3, 44, 9, 3, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 5, 4, 51, 8,
+		4, 10, 4, 12, 4, 54, 9, 4, 1, 4, 1, 4, 1, 5, 1, 5, 1, 6, 1, 6, 1, 7, 1,
+		7, 1, 7, 3, 7, 65, 8, 7, 1, 7, 1, 7, 1, 7, 3, 7, 70, 8, 7, 1, 8, 1, 8,
+		1, 8, 1, 9, 3, 9, 76, 8, 9, 1, 9, 1, 9, 1, 10, 1, 10, 1, 10, 1, 10, 1,
+		10, 1, 10, 1, 10, 3, 10, 87, 8, 10, 1, 10, 0, 0, 11, 0, 2, 4, 6, 8, 10,
+		12, 14, 16, 18, 20, 0, 3, 1, 0, 1, 2, 1, 0, 3, 4, 1, 0, 15, 16, 89, 0,
+		23, 1, 0, 0, 0, 2, 27, 1, 0, 0, 0, 4, 29, 1, 0, 0, 0, 6, 37, 1, 0, 0, 0,
+		8, 45, 1, 0, 0, 0, 10, 57, 1, 0, 0, 0, 12, 59, 1, 0, 0, 0, 14, 69, 1, 0,
+		0, 0, 16, 71, 1, 0, 0, 0, 18, 75, 1, 0, 0, 0, 20, 86, 1, 0, 0, 0, 22, 24,
+		3, 2, 1, 0, 23, 22, 1, 0, 0, 0, 24, 25, 1, 0, 0, 0, 25, 23, 1, 0, 0, 0,
+		25, 26, 1, 0, 0, 0, 26, 1, 1, 0, 0, 0, 27, 28, 3, 4, 2, 0, 28, 3, 1, 0,
+		0, 0, 29, 34, 3, 6, 3, 0, 30, 31, 7, 0, 0, 0, 31, 33, 3, 6, 3, 0, 32, 30,
+		1, 0, 0, 0, 33, 36, 1, 0, 0, 0, 34, 32, 1, 0, 0, 0, 34, 35, 1, 0, 0, 0,
+		35, 5, 1, 0, 0, 0, 36, 34, 1, 0, 0, 0, 37, 42, 3, 20, 10, 0, 38, 39, 7,
+		1, 0, 0, 39, 41, 3, 20, 10, 0, 40, 38, 1, 0, 0, 0, 41, 44, 1, 0, 0, 0,
+		42, 40, 1, 0, 0, 0, 42, 43, 1, 0, 0, 0, 43, 7, 1, 0, 0, 0, 44, 42, 1, 0,
+		0, 0, 45, 46, 3, 10, 5, 0, 46, 47, 5, 5, 0, 0, 47, 52, 3, 14, 7, 0, 48,
+		49, 5, 12, 0, 0, 49, 51, 3, 14, 7, 0, 50, 48, 1, 0, 0, 0, 51, 54, 1, 0,
+		0, 0, 52, 50, 1, 0, 0, 0, 52, 53, 1, 0, 0, 0, 53, 55, 1, 0, 0, 0, 54, 52,
+		1, 0, 0, 0, 55, 56, 5, 6, 0, 0, 56, 9, 1, 0, 0, 0, 57, 58, 3, 12, 6, 0,
+		58, 11, 1, 0, 0, 0, 59, 60, 7, 2, 0, 0, 60, 13, 1, 0, 0, 0, 61, 64, 3,
+		16, 8, 0, 62, 63, 5, 13, 0, 0, 63, 65, 3, 16, 8, 0, 64, 62, 1, 0, 0, 0,
+		64, 65, 1, 0, 0, 0, 65, 70, 1, 0, 0, 0, 66, 70, 3, 18, 9, 0, 67, 70, 3,
+		8, 4, 0, 68, 70, 3, 4, 2, 0, 69, 61, 1, 0, 0, 0, 69, 66, 1, 0, 0, 0, 69,
+		67, 1, 0, 0, 0, 69, 68, 1, 0, 0, 0, 70, 15, 1, 0, 0, 0, 71, 72, 5, 18,
+		0, 0, 72, 73, 5, 17, 0, 0, 73, 17, 1, 0, 0, 0, 74, 76, 5, 2, 0, 0, 75,
+		74, 1, 0, 0, 0, 75, 76, 1, 0, 0, 0, 76, 77, 1, 0, 0, 0, 77, 78, 5, 17,
+		0, 0, 78, 19, 1, 0, 0, 0, 79, 87, 3, 18, 9, 0, 80, 87, 3, 16, 8, 0, 81,
+		87, 3, 8, 4, 0, 82, 83, 5, 5, 0, 0, 83, 84, 3, 4, 2, 0, 84, 85, 5, 6, 0,
+		0, 85, 87, 1, 0, 0, 0, 86, 79, 1, 0, 0, 0, 86, 80, 1, 0, 0, 0, 86, 81,
+		1, 0, 0, 0, 86, 82, 1, 0, 0, 0, 87, 21, 1, 0, 0, 0, 8, 25, 34, 42, 52,
+		64, 69, 75, 86,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -130,7 +136,7 @@ const (
 	EqlParserCOMMA      = 14
 	EqlParserSUM        = 15
 	EqlParserAVG        = 16
-	EqlParserNUMBER     = 17
+	EqlParserDIGIT      = 17
 	EqlParserIDENTIFIER = 18
 	EqlParserWS         = 19
 	EqlParserEOS        = 20
@@ -144,9 +150,11 @@ const (
 	EqlParserRULE_term       = 3
 	EqlParserRULE_actSpec    = 4
 	EqlParserRULE_act        = 5
-	EqlParserRULE_param      = 6
-	EqlParserRULE_magic      = 7
-	EqlParserRULE_factor     = 8
+	EqlParserRULE_math       = 6
+	EqlParserRULE_param      = 7
+	EqlParserRULE_def        = 8
+	EqlParserRULE_number     = 9
+	EqlParserRULE_factor     = 10
 )
 
 // IProgramContext is an interface to support dynamic dispatch.
@@ -277,17 +285,17 @@ func (p *EqlParser) Program() (localctx IProgramContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(19)
+	p.SetState(23)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for ok := true; ok; ok = ((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&491552) != 0) {
+	for ok := true; ok; ok = ((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&491556) != 0) {
 		{
-			p.SetState(18)
+			p.SetState(22)
 			p.Statement()
 		}
 
-		p.SetState(21)
+		p.SetState(25)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
@@ -397,7 +405,7 @@ func (p *EqlParser) Statement() (localctx IStatementContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(23)
+		p.SetState(27)
 		p.Expression()
 	}
 
@@ -551,35 +559,39 @@ func (p *EqlParser) Expression() (localctx IExpressionContext) {
 		}
 	}()
 
+	var _alt int
+
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(25)
+		p.SetState(29)
 		p.Term()
 	}
-	p.SetState(30)
+	p.SetState(34)
 	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 1, p.GetParserRuleContext())
 
-	for _la == EqlParserPLUS || _la == EqlParserMINUS {
-		{
-			p.SetState(26)
-			_la = p.GetTokenStream().LA(1)
+	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
+		if _alt == 1 {
+			{
+				p.SetState(30)
+				_la = p.GetTokenStream().LA(1)
 
-			if !(_la == EqlParserPLUS || _la == EqlParserMINUS) {
-				p.GetErrorHandler().RecoverInline(p)
-			} else {
-				p.GetErrorHandler().ReportMatch(p)
-				p.Consume()
+				if !(_la == EqlParserPLUS || _la == EqlParserMINUS) {
+					p.GetErrorHandler().RecoverInline(p)
+				} else {
+					p.GetErrorHandler().ReportMatch(p)
+					p.Consume()
+				}
 			}
-		}
-		{
-			p.SetState(27)
-			p.Term()
-		}
+			{
+				p.SetState(31)
+				p.Term()
+			}
 
-		p.SetState(32)
+		}
+		p.SetState(36)
 		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 1, p.GetParserRuleContext())
 	}
 
 	return localctx
@@ -734,16 +746,16 @@ func (p *EqlParser) Term() (localctx ITermContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(33)
+		p.SetState(37)
 		p.Factor()
 	}
-	p.SetState(38)
+	p.SetState(42)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == EqlParserDIV || _la == EqlParserMULT {
 		{
-			p.SetState(34)
+			p.SetState(38)
 			_la = p.GetTokenStream().LA(1)
 
 			if !(_la == EqlParserDIV || _la == EqlParserMULT) {
@@ -754,11 +766,11 @@ func (p *EqlParser) Term() (localctx ITermContext) {
 			}
 		}
 		{
-			p.SetState(35)
+			p.SetState(39)
 			p.Factor()
 		}
 
-		p.SetState(40)
+		p.SetState(44)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
@@ -932,39 +944,39 @@ func (p *EqlParser) ActSpec() (localctx IActSpecContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(41)
+		p.SetState(45)
 		p.Act()
 	}
 	{
-		p.SetState(42)
+		p.SetState(46)
 		p.Match(EqlParserLPAREN)
 	}
 
 	{
-		p.SetState(43)
+		p.SetState(47)
 		p.Param()
 	}
-	p.SetState(48)
+	p.SetState(52)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == EqlParserSEMI {
 		{
-			p.SetState(44)
+			p.SetState(48)
 			p.Match(EqlParserSEMI)
 		}
 		{
-			p.SetState(45)
+			p.SetState(49)
 			p.Param()
 		}
 
-		p.SetState(50)
+		p.SetState(54)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 
 	{
-		p.SetState(51)
+		p.SetState(55)
 		p.Match(EqlParserRPAREN)
 	}
 
@@ -979,8 +991,7 @@ type IActContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	SUM() antlr.TerminalNode
-	AVG() antlr.TerminalNode
+	Math() IMathContext
 
 	// IsActContext differentiates from other interfaces.
 	IsActContext()
@@ -1013,12 +1024,20 @@ func NewActContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoking
 
 func (s *ActContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *ActContext) SUM() antlr.TerminalNode {
-	return s.GetToken(EqlParserSUM, 0)
-}
+func (s *ActContext) Math() IMathContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IMathContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
-func (s *ActContext) AVG() antlr.TerminalNode {
-	return s.GetToken(EqlParserAVG, 0)
+	if t == nil {
+		return nil
+	}
+
+	return t.(IMathContext)
 }
 
 func (s *ActContext) GetRuleContext() antlr.RuleContext {
@@ -1047,6 +1066,108 @@ func (p *EqlParser) Act() (localctx IActContext) {
 
 	localctx = NewActContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 10, EqlParserRULE_act)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(57)
+		p.Math()
+	}
+
+	return localctx
+}
+
+// IMathContext is an interface to support dynamic dispatch.
+type IMathContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	SUM() antlr.TerminalNode
+	AVG() antlr.TerminalNode
+
+	// IsMathContext differentiates from other interfaces.
+	IsMathContext()
+}
+
+type MathContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyMathContext() *MathContext {
+	var p = new(MathContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = EqlParserRULE_math
+	return p
+}
+
+func (*MathContext) IsMathContext() {}
+
+func NewMathContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *MathContext {
+	var p = new(MathContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = EqlParserRULE_math
+
+	return p
+}
+
+func (s *MathContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *MathContext) SUM() antlr.TerminalNode {
+	return s.GetToken(EqlParserSUM, 0)
+}
+
+func (s *MathContext) AVG() antlr.TerminalNode {
+	return s.GetToken(EqlParserAVG, 0)
+}
+
+func (s *MathContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *MathContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *MathContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(EqlParserListener); ok {
+		listenerT.EnterMath(s)
+	}
+}
+
+func (s *MathContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(EqlParserListener); ok {
+		listenerT.ExitMath(s)
+	}
+}
+
+func (p *EqlParser) Math() (localctx IMathContext) {
+	this := p
+	_ = this
+
+	localctx = NewMathContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 12, EqlParserRULE_math)
 	var _la int
 
 	defer func() {
@@ -1067,7 +1188,7 @@ func (p *EqlParser) Act() (localctx IActContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(53)
+		p.SetState(59)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == EqlParserSUM || _la == EqlParserAVG) {
@@ -1089,10 +1210,12 @@ type IParamContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	AllMagic() []IMagicContext
-	Magic(i int) IMagicContext
+	AllDef() []IDefContext
+	Def(i int) IDefContext
 	COLON() antlr.TerminalNode
+	Number() INumberContext
 	ActSpec() IActSpecContext
+	Expression() IExpressionContext
 
 	// IsParamContext differentiates from other interfaces.
 	IsParamContext()
@@ -1125,20 +1248,20 @@ func NewParamContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 
 func (s *ParamContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *ParamContext) AllMagic() []IMagicContext {
+func (s *ParamContext) AllDef() []IDefContext {
 	children := s.GetChildren()
 	len := 0
 	for _, ctx := range children {
-		if _, ok := ctx.(IMagicContext); ok {
+		if _, ok := ctx.(IDefContext); ok {
 			len++
 		}
 	}
 
-	tst := make([]IMagicContext, len)
+	tst := make([]IDefContext, len)
 	i := 0
 	for _, ctx := range children {
-		if t, ok := ctx.(IMagicContext); ok {
-			tst[i] = t.(IMagicContext)
+		if t, ok := ctx.(IDefContext); ok {
+			tst[i] = t.(IDefContext)
 			i++
 		}
 	}
@@ -1146,11 +1269,11 @@ func (s *ParamContext) AllMagic() []IMagicContext {
 	return tst
 }
 
-func (s *ParamContext) Magic(i int) IMagicContext {
+func (s *ParamContext) Def(i int) IDefContext {
 	var t antlr.RuleContext
 	j := 0
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IMagicContext); ok {
+		if _, ok := ctx.(IDefContext); ok {
 			if j == i {
 				t = ctx.(antlr.RuleContext)
 				break
@@ -1163,11 +1286,27 @@ func (s *ParamContext) Magic(i int) IMagicContext {
 		return nil
 	}
 
-	return t.(IMagicContext)
+	return t.(IDefContext)
 }
 
 func (s *ParamContext) COLON() antlr.TerminalNode {
 	return s.GetToken(EqlParserCOLON, 0)
+}
+
+func (s *ParamContext) Number() INumberContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(INumberContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(INumberContext)
 }
 
 func (s *ParamContext) ActSpec() IActSpecContext {
@@ -1184,6 +1323,22 @@ func (s *ParamContext) ActSpec() IActSpecContext {
 	}
 
 	return t.(IActSpecContext)
+}
+
+func (s *ParamContext) Expression() IExpressionContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IExpressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExpressionContext)
 }
 
 func (s *ParamContext) GetRuleContext() antlr.RuleContext {
@@ -1211,7 +1366,7 @@ func (p *EqlParser) Param() (localctx IParamContext) {
 	_ = this
 
 	localctx = NewParamContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 12, EqlParserRULE_param)
+	p.EnterRule(localctx, 14, EqlParserRULE_param)
 	var _la int
 
 	defer func() {
@@ -1230,48 +1385,59 @@ func (p *EqlParser) Param() (localctx IParamContext) {
 		}
 	}()
 
-	p.SetState(61)
+	p.SetState(69)
 	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case EqlParserIDENTIFIER:
+	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 5, p.GetParserRuleContext()) {
+	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(55)
-			p.Magic()
+			p.SetState(61)
+			p.Def()
 		}
-		p.SetState(58)
+		p.SetState(64)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
 		if _la == EqlParserCOLON {
 			{
-				p.SetState(56)
+				p.SetState(62)
 				p.Match(EqlParserCOLON)
 			}
 			{
-				p.SetState(57)
-				p.Magic()
+				p.SetState(63)
+				p.Def()
 			}
 
 		}
 
-	case EqlParserSUM, EqlParserAVG:
+	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(60)
+			p.SetState(66)
+			p.Number()
+		}
+
+	case 3:
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(67)
 			p.ActSpec()
 		}
 
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+	case 4:
+		p.EnterOuterAlt(localctx, 4)
+		{
+			p.SetState(68)
+			p.Expression()
+		}
+
 	}
 
 	return localctx
 }
 
-// IMagicContext is an interface to support dynamic dispatch.
-type IMagicContext interface {
+// IDefContext is an interface to support dynamic dispatch.
+type IDefContext interface {
 	antlr.ParserRuleContext
 
 	// GetParser returns the parser.
@@ -1279,73 +1445,73 @@ type IMagicContext interface {
 
 	// Getter signatures
 	IDENTIFIER() antlr.TerminalNode
-	NUMBER() antlr.TerminalNode
+	DIGIT() antlr.TerminalNode
 
-	// IsMagicContext differentiates from other interfaces.
-	IsMagicContext()
+	// IsDefContext differentiates from other interfaces.
+	IsDefContext()
 }
 
-type MagicContext struct {
+type DefContext struct {
 	*antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
-func NewEmptyMagicContext() *MagicContext {
-	var p = new(MagicContext)
+func NewEmptyDefContext() *DefContext {
+	var p = new(DefContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = EqlParserRULE_magic
+	p.RuleIndex = EqlParserRULE_def
 	return p
 }
 
-func (*MagicContext) IsMagicContext() {}
+func (*DefContext) IsDefContext() {}
 
-func NewMagicContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *MagicContext {
-	var p = new(MagicContext)
+func NewDefContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *DefContext {
+	var p = new(DefContext)
 
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = EqlParserRULE_magic
+	p.RuleIndex = EqlParserRULE_def
 
 	return p
 }
 
-func (s *MagicContext) GetParser() antlr.Parser { return s.parser }
+func (s *DefContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *MagicContext) IDENTIFIER() antlr.TerminalNode {
+func (s *DefContext) IDENTIFIER() antlr.TerminalNode {
 	return s.GetToken(EqlParserIDENTIFIER, 0)
 }
 
-func (s *MagicContext) NUMBER() antlr.TerminalNode {
-	return s.GetToken(EqlParserNUMBER, 0)
+func (s *DefContext) DIGIT() antlr.TerminalNode {
+	return s.GetToken(EqlParserDIGIT, 0)
 }
 
-func (s *MagicContext) GetRuleContext() antlr.RuleContext {
+func (s *DefContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *MagicContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+func (s *DefContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *MagicContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *DefContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(EqlParserListener); ok {
-		listenerT.EnterMagic(s)
+		listenerT.EnterDef(s)
 	}
 }
 
-func (s *MagicContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *DefContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(EqlParserListener); ok {
-		listenerT.ExitMagic(s)
+		listenerT.ExitDef(s)
 	}
 }
 
-func (p *EqlParser) Magic() (localctx IMagicContext) {
+func (p *EqlParser) Def() (localctx IDefContext) {
 	this := p
 	_ = this
 
-	localctx = NewMagicContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 14, EqlParserRULE_magic)
+	localctx = NewDefContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 16, EqlParserRULE_def)
 
 	defer func() {
 		p.ExitRule()
@@ -1365,12 +1531,126 @@ func (p *EqlParser) Magic() (localctx IMagicContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(63)
+		p.SetState(71)
 		p.Match(EqlParserIDENTIFIER)
 	}
 	{
-		p.SetState(64)
-		p.Match(EqlParserNUMBER)
+		p.SetState(72)
+		p.Match(EqlParserDIGIT)
+	}
+
+	return localctx
+}
+
+// INumberContext is an interface to support dynamic dispatch.
+type INumberContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	DIGIT() antlr.TerminalNode
+	MINUS() antlr.TerminalNode
+
+	// IsNumberContext differentiates from other interfaces.
+	IsNumberContext()
+}
+
+type NumberContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyNumberContext() *NumberContext {
+	var p = new(NumberContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = EqlParserRULE_number
+	return p
+}
+
+func (*NumberContext) IsNumberContext() {}
+
+func NewNumberContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *NumberContext {
+	var p = new(NumberContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = EqlParserRULE_number
+
+	return p
+}
+
+func (s *NumberContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *NumberContext) DIGIT() antlr.TerminalNode {
+	return s.GetToken(EqlParserDIGIT, 0)
+}
+
+func (s *NumberContext) MINUS() antlr.TerminalNode {
+	return s.GetToken(EqlParserMINUS, 0)
+}
+
+func (s *NumberContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *NumberContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *NumberContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(EqlParserListener); ok {
+		listenerT.EnterNumber(s)
+	}
+}
+
+func (s *NumberContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(EqlParserListener); ok {
+		listenerT.ExitNumber(s)
+	}
+}
+
+func (p *EqlParser) Number() (localctx INumberContext) {
+	this := p
+	_ = this
+
+	localctx = NewNumberContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 18, EqlParserRULE_number)
+	var _la int
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	p.SetState(75)
+	p.GetErrorHandler().Sync(p)
+	_la = p.GetTokenStream().LA(1)
+
+	if _la == EqlParserMINUS {
+		{
+			p.SetState(74)
+			p.Match(EqlParserMINUS)
+		}
+
+	}
+	{
+		p.SetState(77)
+		p.Match(EqlParserDIGIT)
 	}
 
 	return localctx
@@ -1384,8 +1664,8 @@ type IFactorContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	NUMBER() antlr.TerminalNode
-	Magic() IMagicContext
+	Number() INumberContext
+	Def() IDefContext
 	ActSpec() IActSpecContext
 	LPAREN() antlr.TerminalNode
 	Expression() IExpressionContext
@@ -1422,14 +1702,10 @@ func NewFactorContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 
 func (s *FactorContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *FactorContext) NUMBER() antlr.TerminalNode {
-	return s.GetToken(EqlParserNUMBER, 0)
-}
-
-func (s *FactorContext) Magic() IMagicContext {
+func (s *FactorContext) Number() INumberContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IMagicContext); ok {
+		if _, ok := ctx.(INumberContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -1439,7 +1715,23 @@ func (s *FactorContext) Magic() IMagicContext {
 		return nil
 	}
 
-	return t.(IMagicContext)
+	return t.(INumberContext)
+}
+
+func (s *FactorContext) Def() IDefContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IDefContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IDefContext)
 }
 
 func (s *FactorContext) ActSpec() IActSpecContext {
@@ -1507,7 +1799,7 @@ func (p *EqlParser) Factor() (localctx IFactorContext) {
 	_ = this
 
 	localctx = NewFactorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, EqlParserRULE_factor)
+	p.EnterRule(localctx, 20, EqlParserRULE_factor)
 
 	defer func() {
 		p.ExitRule()
@@ -1525,43 +1817,43 @@ func (p *EqlParser) Factor() (localctx IFactorContext) {
 		}
 	}()
 
-	p.SetState(73)
+	p.SetState(86)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
-	case EqlParserNUMBER:
+	case EqlParserMINUS, EqlParserDIGIT:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(66)
-			p.Match(EqlParserNUMBER)
+			p.SetState(79)
+			p.Number()
 		}
 
 	case EqlParserIDENTIFIER:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(67)
-			p.Magic()
+			p.SetState(80)
+			p.Def()
 		}
 
 	case EqlParserSUM, EqlParserAVG:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(68)
+			p.SetState(81)
 			p.ActSpec()
 		}
 
 	case EqlParserLPAREN:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(69)
+			p.SetState(82)
 			p.Match(EqlParserLPAREN)
 		}
 		{
-			p.SetState(70)
+			p.SetState(83)
 			p.Expression()
 		}
 		{
-			p.SetState(71)
+			p.SetState(84)
 			p.Match(EqlParserRPAREN)
 		}
 
