@@ -16,17 +16,14 @@ type EqlParserListener interface {
 	// EnterExpression is called when entering the expression production.
 	EnterExpression(c *ExpressionContext)
 
-	// EnterDeclaration is called when entering the declaration production.
-	EnterDeclaration(c *DeclarationContext)
-
 	// EnterTerm is called when entering the term production.
 	EnterTerm(c *TermContext)
 
-	// EnterVarDecl is called when entering the varDecl production.
-	EnterVarDecl(c *VarDeclContext)
-
 	// EnterActSpec is called when entering the actSpec production.
 	EnterActSpec(c *ActSpecContext)
+
+	// EnterAct is called when entering the act production.
+	EnterAct(c *ActContext)
 
 	// EnterParam is called when entering the param production.
 	EnterParam(c *ParamContext)
@@ -46,17 +43,14 @@ type EqlParserListener interface {
 	// ExitExpression is called when exiting the expression production.
 	ExitExpression(c *ExpressionContext)
 
-	// ExitDeclaration is called when exiting the declaration production.
-	ExitDeclaration(c *DeclarationContext)
-
 	// ExitTerm is called when exiting the term production.
 	ExitTerm(c *TermContext)
 
-	// ExitVarDecl is called when exiting the varDecl production.
-	ExitVarDecl(c *VarDeclContext)
-
 	// ExitActSpec is called when exiting the actSpec production.
 	ExitActSpec(c *ActSpecContext)
+
+	// ExitAct is called when exiting the act production.
+	ExitAct(c *ActContext)
 
 	// ExitParam is called when exiting the param production.
 	ExitParam(c *ParamContext)

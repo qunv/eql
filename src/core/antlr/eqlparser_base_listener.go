@@ -38,29 +38,23 @@ func (s *BaseEqlParserListener) EnterExpression(ctx *ExpressionContext) {}
 // ExitExpression is called when production expression is exited.
 func (s *BaseEqlParserListener) ExitExpression(ctx *ExpressionContext) {}
 
-// EnterDeclaration is called when production declaration is entered.
-func (s *BaseEqlParserListener) EnterDeclaration(ctx *DeclarationContext) {}
-
-// ExitDeclaration is called when production declaration is exited.
-func (s *BaseEqlParserListener) ExitDeclaration(ctx *DeclarationContext) {}
-
 // EnterTerm is called when production term is entered.
 func (s *BaseEqlParserListener) EnterTerm(ctx *TermContext) {}
 
 // ExitTerm is called when production term is exited.
 func (s *BaseEqlParserListener) ExitTerm(ctx *TermContext) {}
 
-// EnterVarDecl is called when production varDecl is entered.
-func (s *BaseEqlParserListener) EnterVarDecl(ctx *VarDeclContext) {}
-
-// ExitVarDecl is called when production varDecl is exited.
-func (s *BaseEqlParserListener) ExitVarDecl(ctx *VarDeclContext) {}
-
 // EnterActSpec is called when production actSpec is entered.
 func (s *BaseEqlParserListener) EnterActSpec(ctx *ActSpecContext) {}
 
 // ExitActSpec is called when production actSpec is exited.
 func (s *BaseEqlParserListener) ExitActSpec(ctx *ActSpecContext) {}
+
+// EnterAct is called when production act is entered.
+func (s *BaseEqlParserListener) EnterAct(ctx *ActContext) {}
+
+// ExitAct is called when production act is exited.
+func (s *BaseEqlParserListener) ExitAct(ctx *ActContext) {}
 
 // EnterParam is called when production param is entered.
 func (s *BaseEqlParserListener) EnterParam(ctx *ParamContext) {}

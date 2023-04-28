@@ -17,10 +17,8 @@ SEMI                    : ';';
 COLON                   : ':';
 COMMA                   : ',';
 
-ACT                     : SUM | AVG;
-
-fragment SUM                     : '=SUM';
-fragment AVG                     : '=AVG';
+SUM                     : '=SUM';
+AVG                     : '=AVG';
 
 NUMBER                     : [0-9]+;
 IDENTIFIER              : [a-zA-Z]+;

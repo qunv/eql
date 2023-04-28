@@ -8,27 +8,22 @@ options {
 program: statement+;
 
 statement
-    : declaration
-    | expression
+    : expression
     ;
 
 expression
     : term ((PLUS | MINUS) term)*
     ;
 
-declaration
-    : varDecl
-    ;
-
 term: factor ((MULT | DIV) factor)*;
 
-varDecl: IDENTIFIER EQUAL expression SEMI;
-actSpec: ACT LPAREN (param (COMMA param)*) RPAREN;
+actSpec: act LPAREN (param (SEMI param)*) RPAREN;
+act: SUM | AVG;
 param: magic (COLON magic)? | actSpec;
 magic: IDENTIFIER NUMBER;
 factor:
-    IDENTIFIER
-    | NUMBER
+    NUMBER
+    | magic
     | actSpec
     | LPAREN expression RPAREN
     ;

@@ -1,26 +1,36 @@
 package main
 
 import (
-	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
-	gogoantlr "github.com/qunv/gogo/src/antlr"
+	"github.com/gin-gonic/gin"
+	parser2 "github.com/qunv/eql/src/core/parser"
+	"net/http"
 )
 
+type Request struct {
+	Q    string      `json:"q"`
+	Data [][]float64 `json:"data"`
+}
+
+type Response struct {
+	Data  interface{} `json:"data"`
+	Error interface{} `json:"error"`
+}
+
 func main() {
-	// Create a CharStream from the file
-	input, err := antlr.NewFileStream("src/main.gogo")
-	if err != nil {
-		panic(err)
-	}
-	lexer := gogoantlr.NewEqlLexer(input)
-	p := gogoantlr.NewEqlParser(antlr.NewCommonTokenStream(lexer, 0))
-	tree := p.Program()
-
-	listener := gogoantlr.NewGoGoInterpreter()
-
-	antlr.ParseTreeWalkerDefault.Walk(listener, tree)
-
-	//visitor := gogoantlr.NewSimpleMathVisitor()
-	//result := visitor.Visit(tree)
-	//
-	//fmt.Println(result) // Output: 17
+	router := gin.Default()
+	router.POST("/exec", func(ctx *gin.Context) {
+		var input Request
+		err := ctx.ShouldBindJSON(&input)
+		if err != nil {
+			ctx.JSON(http.StatusBadRequest, &Response{
+				Error: err.Error(),
+			})
+		}
+		parser := parser2.NewEqlParser(input.Data)
+		result := parser.Exec(input.Q)
+		ctx.JSON(http.StatusOK, &Response{
+			Data: result,
+		})
+	})
+	_ = router.Run("localhost:8080")
 }
