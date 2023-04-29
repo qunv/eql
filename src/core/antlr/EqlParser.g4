@@ -19,7 +19,11 @@ term: factor ((MULT | DIV) factor)*;
 
 actSpec: act LPAREN (param (SEMI param)*) RPAREN;
 act: math;
-math: SUM | AVG;
+math
+    : SUM
+    | ABS
+    | AVG
+    ;
 param: def (COLON def)? | number | actSpec | expression ;
 def: IDENTIFIER DIGIT;
 number: MINUS? DIGIT;

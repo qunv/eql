@@ -33,12 +33,12 @@ func eqlparserParserInit() {
 	staticData := &eqlparserParserStaticData
 	staticData.literalNames = []string{
 		"", "'+'", "'-'", "'/'", "'*'", "'('", "')'", "'{'", "'}'", "'['", "']'",
-		"'='", "';'", "':'", "','", "'SUM'", "'AVG'",
+		"'='", "';'", "':'", "','", "'SUM'", "'AVG'", "'ABS'",
 	}
 	staticData.symbolicNames = []string{
 		"", "PLUS", "MINUS", "DIV", "MULT", "LPAREN", "RPAREN", "LCURLY", "RCURLY",
 		"LBRACKET", "RBRACKET", "EQUAL", "SEMI", "COLON", "COMMA", "SUM", "AVG",
-		"DIGIT", "IDENTIFIER", "WS", "EOS",
+		"ABS", "DIGIT", "IDENTIFIER", "WS", "EOS",
 	}
 	staticData.ruleNames = []string{
 		"program", "statement", "expression", "term", "actSpec", "act", "math",
@@ -46,7 +46,7 @@ func eqlparserParserInit() {
 	}
 	staticData.predictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 20, 89, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 21, 89, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 1, 0, 4, 0, 24, 8, 0, 11, 0, 12, 0, 25, 1, 1, 1, 1, 1, 2, 1, 2, 1,
 		2, 5, 2, 33, 8, 2, 10, 2, 12, 2, 36, 9, 2, 1, 3, 1, 3, 1, 3, 5, 3, 41,
@@ -55,7 +55,7 @@ func eqlparserParserInit() {
 		7, 1, 7, 3, 7, 65, 8, 7, 1, 7, 1, 7, 1, 7, 3, 7, 70, 8, 7, 1, 8, 1, 8,
 		1, 8, 1, 9, 3, 9, 76, 8, 9, 1, 9, 1, 9, 1, 10, 1, 10, 1, 10, 1, 10, 1,
 		10, 1, 10, 1, 10, 3, 10, 87, 8, 10, 1, 10, 0, 0, 11, 0, 2, 4, 6, 8, 10,
-		12, 14, 16, 18, 20, 0, 3, 1, 0, 1, 2, 1, 0, 3, 4, 1, 0, 15, 16, 89, 0,
+		12, 14, 16, 18, 20, 0, 3, 1, 0, 1, 2, 1, 0, 3, 4, 1, 0, 15, 17, 89, 0,
 		23, 1, 0, 0, 0, 2, 27, 1, 0, 0, 0, 4, 29, 1, 0, 0, 0, 6, 37, 1, 0, 0, 0,
 		8, 45, 1, 0, 0, 0, 10, 57, 1, 0, 0, 0, 12, 59, 1, 0, 0, 0, 14, 69, 1, 0,
 		0, 0, 16, 71, 1, 0, 0, 0, 18, 75, 1, 0, 0, 0, 20, 86, 1, 0, 0, 0, 22, 24,
@@ -74,9 +74,9 @@ func eqlparserParserInit() {
 		16, 8, 0, 62, 63, 5, 13, 0, 0, 63, 65, 3, 16, 8, 0, 64, 62, 1, 0, 0, 0,
 		64, 65, 1, 0, 0, 0, 65, 70, 1, 0, 0, 0, 66, 70, 3, 18, 9, 0, 67, 70, 3,
 		8, 4, 0, 68, 70, 3, 4, 2, 0, 69, 61, 1, 0, 0, 0, 69, 66, 1, 0, 0, 0, 69,
-		67, 1, 0, 0, 0, 69, 68, 1, 0, 0, 0, 70, 15, 1, 0, 0, 0, 71, 72, 5, 18,
-		0, 0, 72, 73, 5, 17, 0, 0, 73, 17, 1, 0, 0, 0, 74, 76, 5, 2, 0, 0, 75,
-		74, 1, 0, 0, 0, 75, 76, 1, 0, 0, 0, 76, 77, 1, 0, 0, 0, 77, 78, 5, 17,
+		67, 1, 0, 0, 0, 69, 68, 1, 0, 0, 0, 70, 15, 1, 0, 0, 0, 71, 72, 5, 19,
+		0, 0, 72, 73, 5, 18, 0, 0, 73, 17, 1, 0, 0, 0, 74, 76, 5, 2, 0, 0, 75,
+		74, 1, 0, 0, 0, 75, 76, 1, 0, 0, 0, 76, 77, 1, 0, 0, 0, 77, 78, 5, 18,
 		0, 0, 78, 19, 1, 0, 0, 0, 79, 87, 3, 18, 9, 0, 80, 87, 3, 16, 8, 0, 81,
 		87, 3, 8, 4, 0, 82, 83, 5, 5, 0, 0, 83, 84, 3, 4, 2, 0, 84, 85, 5, 6, 0,
 		0, 85, 87, 1, 0, 0, 0, 86, 79, 1, 0, 0, 0, 86, 80, 1, 0, 0, 0, 86, 81,
@@ -136,10 +136,11 @@ const (
 	EqlParserCOMMA      = 14
 	EqlParserSUM        = 15
 	EqlParserAVG        = 16
-	EqlParserDIGIT      = 17
-	EqlParserIDENTIFIER = 18
-	EqlParserWS         = 19
-	EqlParserEOS        = 20
+	EqlParserABS        = 17
+	EqlParserDIGIT      = 18
+	EqlParserIDENTIFIER = 19
+	EqlParserWS         = 20
+	EqlParserEOS        = 21
 )
 
 // EqlParser rules.
@@ -289,7 +290,7 @@ func (p *EqlParser) Program() (localctx IProgramContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for ok := true; ok; ok = ((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&491556) != 0) {
+	for ok := true; ok; ok = ((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1015844) != 0) {
 		{
 			p.SetState(22)
 			p.Statement()
@@ -1101,6 +1102,7 @@ type IMathContext interface {
 
 	// Getter signatures
 	SUM() antlr.TerminalNode
+	ABS() antlr.TerminalNode
 	AVG() antlr.TerminalNode
 
 	// IsMathContext differentiates from other interfaces.
@@ -1136,6 +1138,10 @@ func (s *MathContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *MathContext) SUM() antlr.TerminalNode {
 	return s.GetToken(EqlParserSUM, 0)
+}
+
+func (s *MathContext) ABS() antlr.TerminalNode {
+	return s.GetToken(EqlParserABS, 0)
 }
 
 func (s *MathContext) AVG() antlr.TerminalNode {
@@ -1191,7 +1197,7 @@ func (p *EqlParser) Math() (localctx IMathContext) {
 		p.SetState(59)
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == EqlParserSUM || _la == EqlParserAVG) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&229376) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -1835,7 +1841,7 @@ func (p *EqlParser) Factor() (localctx IFactorContext) {
 			p.Def()
 		}
 
-	case EqlParserSUM, EqlParserAVG:
+	case EqlParserSUM, EqlParserAVG, EqlParserABS:
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(81)

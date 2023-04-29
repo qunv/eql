@@ -17,8 +17,10 @@ SEMI                    : ';';
 COLON                   : ':';
 COMMA                   : ',';
 
+// math
 SUM                     : 'SUM';
 AVG                     : 'AVG';
+ABS                     : 'ABS';
 
 DIGIT                   : [0-9]+;
 IDENTIFIER              : [a-zA-Z]+;
