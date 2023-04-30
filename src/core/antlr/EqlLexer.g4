@@ -21,6 +21,7 @@ COMMA                   : ',';
 SUM                     : 'SUM';
 AVG                     : 'AVG';
 ABS                     : 'ABS';
+ADD                     : 'ADD';
 
 DIGIT                   : [0-9]+;
 IDENTIFIER              : [a-zA-Z]+;

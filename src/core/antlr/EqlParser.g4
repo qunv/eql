@@ -17,19 +17,28 @@ expression
 
 term: factor ((MULT | DIV) factor)*;
 
-actSpec: act LPAREN (param (SEMI param)*) RPAREN;
-act: math;
+actionSpec: type LPAREN (param (SEMI param)*) RPAREN;
+type: math | operator;
 math
     : SUM
     | ABS
-    | AVG
     ;
-param: def (COLON def)? | number | actSpec | expression ;
+operator
+    : AVG
+    | ADD;
+param
+    : def
+    | inputRange
+    | number
+    | actionSpec
+    | expression
+    ;
+inputRange: def COLON def;
 def: IDENTIFIER DIGIT;
 number: MINUS? DIGIT;
 factor:
     number
     | def
-    | actSpec
+    | actionSpec
     | LPAREN expression RPAREN
     ;

@@ -1,31 +1,31 @@
 package parser
 
 import (
-	"github.com/qunv/eql/src/core/act"
+	"github.com/qunv/eql/src/core/action"
 	eqlantlr "github.com/qunv/eql/src/core/antlr"
 )
 
 type EqlInterpreter struct {
 	*eqlantlr.BaseEqlParserListener
-	input  [][]float64
-	result float64
+	input  [][]interface{}
+	result action.EqlValue
 }
 
-func NewEqlInterpreter(input [][]float64) *EqlInterpreter {
+func NewEqlInterpreter(input [][]interface{}) *EqlInterpreter {
 	return &EqlInterpreter{
 		input: input,
 	}
 }
 
-func (e *EqlInterpreter) Result() float64 {
+func (e *EqlInterpreter) Result() action.EqlValue {
 	return e.result
 }
 
 func (e *EqlInterpreter) ExitStatement(ctx *eqlantlr.StatementContext) {
-	expr := act.NewExpression(ctx.Expression(), e.input)
-	e.result = expr.Evaluate()
-}
-
-func (e *EqlInterpreter) evaluateActSpec(ctx eqlantlr.IActSpecContext) float64 {
-	return act.GetActSpec(ctx).Calculate(e.input)
+	expr := action.NewExpression(ctx.Expression(), e.input)
+	result, err := expr.Evaluate()
+	if err != nil {
+		panic(err)
+	}
+	e.result = result
 }

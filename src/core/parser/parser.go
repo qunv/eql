@@ -2,18 +2,19 @@ package parser
 
 import (
 	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
+	"github.com/qunv/eql/src/core/action"
 	eqlantlr "github.com/qunv/eql/src/core/antlr"
 )
 
 type Parser struct {
-	input [][]float64
+	input [][]interface{}
 }
 
-func NewEqlParser(input [][]float64) *Parser {
+func NewEqlParser(input [][]interface{}) *Parser {
 	return &Parser{input: input}
 }
 
-func (p *Parser) Exec(q string) float64 {
+func (p *Parser) Exec(q string) action.EqlValue {
 	input := antlr.NewInputStream(q)
 	lexer := eqlantlr.NewEqlLexer(input)
 	eqlParser := eqlantlr.NewEqlParser(antlr.NewCommonTokenStream(lexer, 0))

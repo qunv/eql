@@ -44,17 +44,17 @@ func (s *BaseEqlParserListener) EnterTerm(ctx *TermContext) {}
 // ExitTerm is called when production term is exited.
 func (s *BaseEqlParserListener) ExitTerm(ctx *TermContext) {}
 
-// EnterActSpec is called when production actSpec is entered.
-func (s *BaseEqlParserListener) EnterActSpec(ctx *ActSpecContext) {}
+// EnterActionSpec is called when production actionSpec is entered.
+func (s *BaseEqlParserListener) EnterActionSpec(ctx *ActionSpecContext) {}
 
-// ExitActSpec is called when production actSpec is exited.
-func (s *BaseEqlParserListener) ExitActSpec(ctx *ActSpecContext) {}
+// ExitActionSpec is called when production actionSpec is exited.
+func (s *BaseEqlParserListener) ExitActionSpec(ctx *ActionSpecContext) {}
 
-// EnterAct is called when production act is entered.
-func (s *BaseEqlParserListener) EnterAct(ctx *ActContext) {}
+// EnterType is called when production type is entered.
+func (s *BaseEqlParserListener) EnterType(ctx *TypeContext) {}
 
-// ExitAct is called when production act is exited.
-func (s *BaseEqlParserListener) ExitAct(ctx *ActContext) {}
+// ExitType is called when production type is exited.
+func (s *BaseEqlParserListener) ExitType(ctx *TypeContext) {}
 
 // EnterMath is called when production math is entered.
 func (s *BaseEqlParserListener) EnterMath(ctx *MathContext) {}
@@ -62,11 +62,23 @@ func (s *BaseEqlParserListener) EnterMath(ctx *MathContext) {}
 // ExitMath is called when production math is exited.
 func (s *BaseEqlParserListener) ExitMath(ctx *MathContext) {}
 
+// EnterOperator is called when production operator is entered.
+func (s *BaseEqlParserListener) EnterOperator(ctx *OperatorContext) {}
+
+// ExitOperator is called when production operator is exited.
+func (s *BaseEqlParserListener) ExitOperator(ctx *OperatorContext) {}
+
 // EnterParam is called when production param is entered.
 func (s *BaseEqlParserListener) EnterParam(ctx *ParamContext) {}
 
 // ExitParam is called when production param is exited.
 func (s *BaseEqlParserListener) ExitParam(ctx *ParamContext) {}
+
+// EnterInputRange is called when production inputRange is entered.
+func (s *BaseEqlParserListener) EnterInputRange(ctx *InputRangeContext) {}
+
+// ExitInputRange is called when production inputRange is exited.
+func (s *BaseEqlParserListener) ExitInputRange(ctx *InputRangeContext) {}
 
 // EnterDef is called when production def is entered.
 func (s *BaseEqlParserListener) EnterDef(ctx *DefContext) {}

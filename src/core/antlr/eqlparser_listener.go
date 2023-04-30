@@ -19,17 +19,23 @@ type EqlParserListener interface {
 	// EnterTerm is called when entering the term production.
 	EnterTerm(c *TermContext)
 
-	// EnterActSpec is called when entering the actSpec production.
-	EnterActSpec(c *ActSpecContext)
+	// EnterActionSpec is called when entering the actionSpec production.
+	EnterActionSpec(c *ActionSpecContext)
 
-	// EnterAct is called when entering the act production.
-	EnterAct(c *ActContext)
+	// EnterType is called when entering the type production.
+	EnterType(c *TypeContext)
 
 	// EnterMath is called when entering the math production.
 	EnterMath(c *MathContext)
 
+	// EnterOperator is called when entering the operator production.
+	EnterOperator(c *OperatorContext)
+
 	// EnterParam is called when entering the param production.
 	EnterParam(c *ParamContext)
+
+	// EnterInputRange is called when entering the inputRange production.
+	EnterInputRange(c *InputRangeContext)
 
 	// EnterDef is called when entering the def production.
 	EnterDef(c *DefContext)
@@ -52,17 +58,23 @@ type EqlParserListener interface {
 	// ExitTerm is called when exiting the term production.
 	ExitTerm(c *TermContext)
 
-	// ExitActSpec is called when exiting the actSpec production.
-	ExitActSpec(c *ActSpecContext)
+	// ExitActionSpec is called when exiting the actionSpec production.
+	ExitActionSpec(c *ActionSpecContext)
 
-	// ExitAct is called when exiting the act production.
-	ExitAct(c *ActContext)
+	// ExitType is called when exiting the type production.
+	ExitType(c *TypeContext)
 
 	// ExitMath is called when exiting the math production.
 	ExitMath(c *MathContext)
 
+	// ExitOperator is called when exiting the operator production.
+	ExitOperator(c *OperatorContext)
+
 	// ExitParam is called when exiting the param production.
 	ExitParam(c *ParamContext)
+
+	// ExitInputRange is called when exiting the inputRange production.
+	ExitInputRange(c *InputRangeContext)
 
 	// ExitDef is called when exiting the def production.
 	ExitDef(c *DefContext)

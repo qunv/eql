@@ -7,8 +7,8 @@ import (
 )
 
 type Request struct {
-	Q    string      `json:"q"`
-	Data [][]float64 `json:"data"`
+	Q    string          `json:"q"`
+	Data [][]interface{} `json:"data"`
 }
 
 type Response struct {
