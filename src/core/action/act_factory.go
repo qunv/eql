@@ -25,6 +25,12 @@ func GetActSpec(ctx antlr.IActionSpecContext) Action {
 		if operator.ADD() != nil {
 			return newAdd(ctx)
 		}
+		if operator.EQ() != nil {
+			return newEq(ctx)
+		}
+		if operator.CONCAT() != nil {
+			return newConcat(ctx)
+		}
 	}
 	panic("type not support!")
 }

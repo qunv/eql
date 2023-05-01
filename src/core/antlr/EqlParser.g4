@@ -25,7 +25,12 @@ math
     ;
 operator
     : AVG
-    | ADD;
+    | ADD
+    | EQ
+    | CONCAT
+    | DIVIDE
+    ;
+
 param
     : def
     | inputRange

@@ -3,6 +3,7 @@ package action
 import (
 	"fmt"
 	"github.com/qunv/eql/src/core/utils"
+	"reflect"
 )
 
 type EqlValue interface {
@@ -17,10 +18,11 @@ type EqlValue interface {
 
 type value struct {
 	v interface{}
+	t reflect.Type
 }
 
 func NewEqlValue(v interface{}) EqlValue {
-	return &value{v}
+	return &value{v, reflect.TypeOf(v)}
 }
 
 func (v *value) Value() interface{} {

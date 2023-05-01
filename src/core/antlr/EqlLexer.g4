@@ -19,9 +19,14 @@ COMMA                   : ',';
 
 // math
 SUM                     : 'SUM';
-AVG                     : 'AVG';
 ABS                     : 'ABS';
+
+// operator
+AVG                     : 'AVG';
 ADD                     : 'ADD';
+DIVIDE                  : 'DIVIDE';
+EQ                      : 'EQ';
+CONCAT                  : 'CONCAT';
 
 DIGIT                   : [0-9]+;
 IDENTIFIER              : [a-zA-Z]+;

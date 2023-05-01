@@ -33,12 +33,14 @@ func eqlparserParserInit() {
 	staticData := &eqlparserParserStaticData
 	staticData.literalNames = []string{
 		"", "'+'", "'-'", "'/'", "'*'", "'('", "')'", "'{'", "'}'", "'['", "']'",
-		"'='", "';'", "':'", "','", "'SUM'", "'AVG'", "'ABS'", "'ADD'",
+		"'='", "';'", "':'", "','", "'SUM'", "'ABS'", "'AVG'", "'ADD'", "'DIVIDE'",
+		"'EQ'", "'CONCAT'",
 	}
 	staticData.symbolicNames = []string{
 		"", "PLUS", "MINUS", "DIV", "MULT", "LPAREN", "RPAREN", "LCURLY", "RCURLY",
-		"LBRACKET", "RBRACKET", "EQUAL", "SEMI", "COLON", "COMMA", "SUM", "AVG",
-		"ABS", "ADD", "DIGIT", "IDENTIFIER", "WS", "EOS",
+		"LBRACKET", "RBRACKET", "EQUAL", "SEMI", "COLON", "COMMA", "SUM", "ABS",
+		"AVG", "ADD", "DIVIDE", "EQ", "CONCAT", "DIGIT", "IDENTIFIER", "WS",
+		"EOS",
 	}
 	staticData.ruleNames = []string{
 		"program", "statement", "expression", "term", "actionSpec", "type",
@@ -46,7 +48,7 @@ func eqlparserParserInit() {
 	}
 	staticData.predictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 22, 98, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 25, 98, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 1, 0, 4, 0, 28, 8, 0, 11, 0, 12, 0, 29,
 		1, 1, 1, 1, 1, 2, 1, 2, 1, 2, 5, 2, 37, 8, 2, 10, 2, 12, 2, 40, 9, 2, 1,
@@ -56,35 +58,35 @@ func eqlparserParserInit() {
 		3, 8, 75, 8, 8, 1, 9, 1, 9, 1, 9, 1, 9, 1, 10, 1, 10, 1, 10, 1, 11, 3,
 		11, 85, 8, 11, 1, 11, 1, 11, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12,
 		1, 12, 3, 12, 96, 8, 12, 1, 12, 0, 0, 13, 0, 2, 4, 6, 8, 10, 12, 14, 16,
-		18, 20, 22, 24, 0, 4, 1, 0, 1, 2, 1, 0, 3, 4, 2, 0, 15, 15, 17, 17, 2,
-		0, 16, 16, 18, 18, 97, 0, 27, 1, 0, 0, 0, 2, 31, 1, 0, 0, 0, 4, 33, 1,
-		0, 0, 0, 6, 41, 1, 0, 0, 0, 8, 49, 1, 0, 0, 0, 10, 63, 1, 0, 0, 0, 12,
-		65, 1, 0, 0, 0, 14, 67, 1, 0, 0, 0, 16, 74, 1, 0, 0, 0, 18, 76, 1, 0, 0,
-		0, 20, 80, 1, 0, 0, 0, 22, 84, 1, 0, 0, 0, 24, 95, 1, 0, 0, 0, 26, 28,
-		3, 2, 1, 0, 27, 26, 1, 0, 0, 0, 28, 29, 1, 0, 0, 0, 29, 27, 1, 0, 0, 0,
-		29, 30, 1, 0, 0, 0, 30, 1, 1, 0, 0, 0, 31, 32, 3, 4, 2, 0, 32, 3, 1, 0,
-		0, 0, 33, 38, 3, 6, 3, 0, 34, 35, 7, 0, 0, 0, 35, 37, 3, 6, 3, 0, 36, 34,
-		1, 0, 0, 0, 37, 40, 1, 0, 0, 0, 38, 36, 1, 0, 0, 0, 38, 39, 1, 0, 0, 0,
-		39, 5, 1, 0, 0, 0, 40, 38, 1, 0, 0, 0, 41, 46, 3, 24, 12, 0, 42, 43, 7,
-		1, 0, 0, 43, 45, 3, 24, 12, 0, 44, 42, 1, 0, 0, 0, 45, 48, 1, 0, 0, 0,
-		46, 44, 1, 0, 0, 0, 46, 47, 1, 0, 0, 0, 47, 7, 1, 0, 0, 0, 48, 46, 1, 0,
-		0, 0, 49, 50, 3, 10, 5, 0, 50, 51, 5, 5, 0, 0, 51, 56, 3, 16, 8, 0, 52,
-		53, 5, 12, 0, 0, 53, 55, 3, 16, 8, 0, 54, 52, 1, 0, 0, 0, 55, 58, 1, 0,
-		0, 0, 56, 54, 1, 0, 0, 0, 56, 57, 1, 0, 0, 0, 57, 59, 1, 0, 0, 0, 58, 56,
-		1, 0, 0, 0, 59, 60, 5, 6, 0, 0, 60, 9, 1, 0, 0, 0, 61, 64, 3, 12, 6, 0,
-		62, 64, 3, 14, 7, 0, 63, 61, 1, 0, 0, 0, 63, 62, 1, 0, 0, 0, 64, 11, 1,
-		0, 0, 0, 65, 66, 7, 2, 0, 0, 66, 13, 1, 0, 0, 0, 67, 68, 7, 3, 0, 0, 68,
-		15, 1, 0, 0, 0, 69, 75, 3, 20, 10, 0, 70, 75, 3, 18, 9, 0, 71, 75, 3, 22,
-		11, 0, 72, 75, 3, 8, 4, 0, 73, 75, 3, 4, 2, 0, 74, 69, 1, 0, 0, 0, 74,
-		70, 1, 0, 0, 0, 74, 71, 1, 0, 0, 0, 74, 72, 1, 0, 0, 0, 74, 73, 1, 0, 0,
-		0, 75, 17, 1, 0, 0, 0, 76, 77, 3, 20, 10, 0, 77, 78, 5, 13, 0, 0, 78, 79,
-		3, 20, 10, 0, 79, 19, 1, 0, 0, 0, 80, 81, 5, 20, 0, 0, 81, 82, 5, 19, 0,
-		0, 82, 21, 1, 0, 0, 0, 83, 85, 5, 2, 0, 0, 84, 83, 1, 0, 0, 0, 84, 85,
-		1, 0, 0, 0, 85, 86, 1, 0, 0, 0, 86, 87, 5, 19, 0, 0, 87, 23, 1, 0, 0, 0,
-		88, 96, 3, 22, 11, 0, 89, 96, 3, 20, 10, 0, 90, 96, 3, 8, 4, 0, 91, 92,
-		5, 5, 0, 0, 92, 93, 3, 4, 2, 0, 93, 94, 5, 6, 0, 0, 94, 96, 1, 0, 0, 0,
-		95, 88, 1, 0, 0, 0, 95, 89, 1, 0, 0, 0, 95, 90, 1, 0, 0, 0, 95, 91, 1,
-		0, 0, 0, 96, 25, 1, 0, 0, 0, 8, 29, 38, 46, 56, 63, 74, 84, 95,
+		18, 20, 22, 24, 0, 4, 1, 0, 1, 2, 1, 0, 3, 4, 1, 0, 15, 16, 1, 0, 17, 21,
+		97, 0, 27, 1, 0, 0, 0, 2, 31, 1, 0, 0, 0, 4, 33, 1, 0, 0, 0, 6, 41, 1,
+		0, 0, 0, 8, 49, 1, 0, 0, 0, 10, 63, 1, 0, 0, 0, 12, 65, 1, 0, 0, 0, 14,
+		67, 1, 0, 0, 0, 16, 74, 1, 0, 0, 0, 18, 76, 1, 0, 0, 0, 20, 80, 1, 0, 0,
+		0, 22, 84, 1, 0, 0, 0, 24, 95, 1, 0, 0, 0, 26, 28, 3, 2, 1, 0, 27, 26,
+		1, 0, 0, 0, 28, 29, 1, 0, 0, 0, 29, 27, 1, 0, 0, 0, 29, 30, 1, 0, 0, 0,
+		30, 1, 1, 0, 0, 0, 31, 32, 3, 4, 2, 0, 32, 3, 1, 0, 0, 0, 33, 38, 3, 6,
+		3, 0, 34, 35, 7, 0, 0, 0, 35, 37, 3, 6, 3, 0, 36, 34, 1, 0, 0, 0, 37, 40,
+		1, 0, 0, 0, 38, 36, 1, 0, 0, 0, 38, 39, 1, 0, 0, 0, 39, 5, 1, 0, 0, 0,
+		40, 38, 1, 0, 0, 0, 41, 46, 3, 24, 12, 0, 42, 43, 7, 1, 0, 0, 43, 45, 3,
+		24, 12, 0, 44, 42, 1, 0, 0, 0, 45, 48, 1, 0, 0, 0, 46, 44, 1, 0, 0, 0,
+		46, 47, 1, 0, 0, 0, 47, 7, 1, 0, 0, 0, 48, 46, 1, 0, 0, 0, 49, 50, 3, 10,
+		5, 0, 50, 51, 5, 5, 0, 0, 51, 56, 3, 16, 8, 0, 52, 53, 5, 12, 0, 0, 53,
+		55, 3, 16, 8, 0, 54, 52, 1, 0, 0, 0, 55, 58, 1, 0, 0, 0, 56, 54, 1, 0,
+		0, 0, 56, 57, 1, 0, 0, 0, 57, 59, 1, 0, 0, 0, 58, 56, 1, 0, 0, 0, 59, 60,
+		5, 6, 0, 0, 60, 9, 1, 0, 0, 0, 61, 64, 3, 12, 6, 0, 62, 64, 3, 14, 7, 0,
+		63, 61, 1, 0, 0, 0, 63, 62, 1, 0, 0, 0, 64, 11, 1, 0, 0, 0, 65, 66, 7,
+		2, 0, 0, 66, 13, 1, 0, 0, 0, 67, 68, 7, 3, 0, 0, 68, 15, 1, 0, 0, 0, 69,
+		75, 3, 20, 10, 0, 70, 75, 3, 18, 9, 0, 71, 75, 3, 22, 11, 0, 72, 75, 3,
+		8, 4, 0, 73, 75, 3, 4, 2, 0, 74, 69, 1, 0, 0, 0, 74, 70, 1, 0, 0, 0, 74,
+		71, 1, 0, 0, 0, 74, 72, 1, 0, 0, 0, 74, 73, 1, 0, 0, 0, 75, 17, 1, 0, 0,
+		0, 76, 77, 3, 20, 10, 0, 77, 78, 5, 13, 0, 0, 78, 79, 3, 20, 10, 0, 79,
+		19, 1, 0, 0, 0, 80, 81, 5, 23, 0, 0, 81, 82, 5, 22, 0, 0, 82, 21, 1, 0,
+		0, 0, 83, 85, 5, 2, 0, 0, 84, 83, 1, 0, 0, 0, 84, 85, 1, 0, 0, 0, 85, 86,
+		1, 0, 0, 0, 86, 87, 5, 22, 0, 0, 87, 23, 1, 0, 0, 0, 88, 96, 3, 22, 11,
+		0, 89, 96, 3, 20, 10, 0, 90, 96, 3, 8, 4, 0, 91, 92, 5, 5, 0, 0, 92, 93,
+		3, 4, 2, 0, 93, 94, 5, 6, 0, 0, 94, 96, 1, 0, 0, 0, 95, 88, 1, 0, 0, 0,
+		95, 89, 1, 0, 0, 0, 95, 90, 1, 0, 0, 0, 95, 91, 1, 0, 0, 0, 96, 25, 1,
+		0, 0, 0, 8, 29, 38, 46, 56, 63, 74, 84, 95,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -138,13 +140,16 @@ const (
 	EqlParserCOLON      = 13
 	EqlParserCOMMA      = 14
 	EqlParserSUM        = 15
-	EqlParserAVG        = 16
-	EqlParserABS        = 17
+	EqlParserABS        = 16
+	EqlParserAVG        = 17
 	EqlParserADD        = 18
-	EqlParserDIGIT      = 19
-	EqlParserIDENTIFIER = 20
-	EqlParserWS         = 21
-	EqlParserEOS        = 22
+	EqlParserDIVIDE     = 19
+	EqlParserEQ         = 20
+	EqlParserCONCAT     = 21
+	EqlParserDIGIT      = 22
+	EqlParserIDENTIFIER = 23
+	EqlParserWS         = 24
+	EqlParserEOS        = 25
 )
 
 // EqlParser rules.
@@ -296,7 +301,7 @@ func (p *EqlParser) Program() (localctx IProgramContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for ok := true; ok; ok = ((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&2064420) != 0) {
+	for ok := true; ok; ok = ((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&16744484) != 0) {
 		{
 			p.SetState(26)
 			p.Statement()
@@ -1118,7 +1123,7 @@ func (p *EqlParser) Type_() (localctx ITypeContext) {
 			p.Math()
 		}
 
-	case EqlParserAVG, EqlParserADD:
+	case EqlParserAVG, EqlParserADD, EqlParserDIVIDE, EqlParserEQ, EqlParserCONCAT:
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(62)
@@ -1252,6 +1257,9 @@ type IOperatorContext interface {
 	// Getter signatures
 	AVG() antlr.TerminalNode
 	ADD() antlr.TerminalNode
+	EQ() antlr.TerminalNode
+	CONCAT() antlr.TerminalNode
+	DIVIDE() antlr.TerminalNode
 
 	// IsOperatorContext differentiates from other interfaces.
 	IsOperatorContext()
@@ -1290,6 +1298,18 @@ func (s *OperatorContext) AVG() antlr.TerminalNode {
 
 func (s *OperatorContext) ADD() antlr.TerminalNode {
 	return s.GetToken(EqlParserADD, 0)
+}
+
+func (s *OperatorContext) EQ() antlr.TerminalNode {
+	return s.GetToken(EqlParserEQ, 0)
+}
+
+func (s *OperatorContext) CONCAT() antlr.TerminalNode {
+	return s.GetToken(EqlParserCONCAT, 0)
+}
+
+func (s *OperatorContext) DIVIDE() antlr.TerminalNode {
+	return s.GetToken(EqlParserDIVIDE, 0)
 }
 
 func (s *OperatorContext) GetRuleContext() antlr.RuleContext {
@@ -1341,7 +1361,7 @@ func (p *EqlParser) Operator() (localctx IOperatorContext) {
 		p.SetState(67)
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == EqlParserAVG || _la == EqlParserADD) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&4063232) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -2110,7 +2130,7 @@ func (p *EqlParser) Factor() (localctx IFactorContext) {
 			p.Def()
 		}
 
-	case EqlParserSUM, EqlParserAVG, EqlParserABS, EqlParserADD:
+	case EqlParserSUM, EqlParserABS, EqlParserAVG, EqlParserADD, EqlParserDIVIDE, EqlParserEQ, EqlParserCONCAT:
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(90)
