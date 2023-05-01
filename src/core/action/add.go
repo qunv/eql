@@ -1,18 +1,21 @@
 package action
 
-import "github.com/qunv/eql/src/core/antlr"
+import (
+	"errors"
+	"github.com/qunv/eql/src/core/antlr"
+)
 
-type add struct {
+type _add struct {
 	ctx antlr.IActionSpecContext
 }
 
-func newAdd(ctx antlr.IActionSpecContext) Action {
-	return add{ctx}
+func add(ctx antlr.IActionSpecContext) Action {
+	return _add{ctx}
 }
 
-func (a add) Calculate(input [][]interface{}) (EqlValue, error) {
+func (a _add) Calculate(input [][]interface{}) (EqlValue, error) {
 	if len(a.ctx.AllParam()) != 2 {
-		panic("Len params just accept 2")
+		return nil, errors.New("len params just accept 2")
 	}
-	return newSum(a.ctx).Calculate(input)
+	return sum(a.ctx).Calculate(input)
 }

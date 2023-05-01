@@ -11,25 +11,31 @@ func GetActSpec(ctx antlr.IActionSpecContext) Action {
 	}
 	if math := type_.Math(); math != nil {
 		if math.SUM() != nil {
-			return newSum(ctx)
+			return sum(ctx)
 		}
 		if math.ABS() != nil {
-			return newAbs(ctx)
+			return abs(ctx)
 		}
 	}
 
 	if operator := type_.Operator(); operator != nil {
 		if operator.AVG() != nil {
-			return newAvg(ctx)
+			return avg(ctx)
 		}
 		if operator.ADD() != nil {
-			return newAdd(ctx)
+			return add(ctx)
 		}
 		if operator.EQ() != nil {
-			return newEq(ctx)
+			return eq(ctx)
 		}
 		if operator.CONCAT() != nil {
-			return newConcat(ctx)
+			return concat(ctx)
+		}
+		if operator.MULTIPLY() != nil {
+			return multiply(ctx)
+		}
+		if operator.DIVIDE() != nil {
+			return divide(ctx)
 		}
 	}
 	panic("type not support!")

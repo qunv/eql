@@ -30,4 +30,10 @@ func TestParser_Handle(t *testing.T) {
 
 	result = p.Exec("CONCAT(C3;D3)")
 	assert.Equal(t, "testtest", result.String())
+
+	result = p.Exec("MULTIPLY(B0;C0)")
+	assert.Equal(t, "6", result.String())
+
+	result = p.Exec("DIVIDE(D0;B0)")
+	assert.Equal(t, "2", result.String())
 }

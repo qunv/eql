@@ -4,17 +4,17 @@ import (
 	"github.com/qunv/eql/src/core/antlr"
 )
 
-type avg struct {
+type _avg struct {
 	ctx antlr.IActionSpecContext
 }
 
-func newAvg(ctx antlr.IActionSpecContext) Action {
-	return avg{
+func avg(ctx antlr.IActionSpecContext) Action {
+	return _avg{
 		ctx: ctx,
 	}
 }
 
-func (a avg) Calculate(input [][]interface{}) (EqlValue, error) {
+func (a _avg) Calculate(input [][]interface{}) (EqlValue, error) {
 	params := a.ctx.AllParam()
 	result := NewEqlValue(0.0)
 	f := func(values []EqlValue) (EqlValue, error) {
@@ -34,7 +34,7 @@ func (a avg) Calculate(input [][]interface{}) (EqlValue, error) {
 	}
 	lenValue := NewEqlValue(float64(len(params)))
 	for _, p := range params {
-		par, err := newParam(p, f).evaluate(input)
+		par, err := param(p, f).evaluate(input)
 		if err != nil {
 			return nil, err
 		}

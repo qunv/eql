@@ -25,6 +25,7 @@ ABS                     : 'ABS';
 AVG                     : 'AVG';
 ADD                     : 'ADD';
 DIVIDE                  : 'DIVIDE';
+MULTIPLY                : 'MULTIPLY';
 EQ                      : 'EQ';
 CONCAT                  : 'CONCAT';
 

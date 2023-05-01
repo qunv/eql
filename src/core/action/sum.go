@@ -4,17 +4,17 @@ import (
 	"github.com/qunv/eql/src/core/antlr"
 )
 
-type sum struct {
+type _sum struct {
 	ctx antlr.IActionSpecContext
 }
 
-func newSum(ctx antlr.IActionSpecContext) Action {
-	return sum{
+func sum(ctx antlr.IActionSpecContext) Action {
+	return _sum{
 		ctx: ctx,
 	}
 }
 
-func (s sum) Calculate(input [][]interface{}) (EqlValue, error) {
+func (s _sum) Calculate(input [][]interface{}) (EqlValue, error) {
 	params := s.ctx.AllParam()
 	f := func(values []EqlValue) (EqlValue, error) {
 		r := NewEqlValue(0.0)
@@ -27,7 +27,7 @@ func (s sum) Calculate(input [][]interface{}) (EqlValue, error) {
 	}
 	result := NewEqlValue(0.0)
 	for _, p := range params {
-		par, err := newParam(p, f).evaluate(input)
+		par, err := param(p, f).evaluate(input)
 		if err != nil {
 			return nil, err
 		}

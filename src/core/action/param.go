@@ -7,19 +7,19 @@ import (
 
 type fn func([]EqlValue) (EqlValue, error)
 
-type param struct {
+type _param struct {
 	ctx antlr.IParamContext
 	f   fn
 }
 
-func newParam(ctx antlr.IParamContext, f fn) param {
-	return param{
+func param(ctx antlr.IParamContext, f fn) _param {
+	return _param{
 		ctx: ctx,
 		f:   f,
 	}
 }
 
-func (e param) evaluate(input [][]interface{}) (EqlValue, error) {
+func (e _param) evaluate(input [][]interface{}) (EqlValue, error) {
 	if e.ctx.ActionSpec() != nil {
 		return GetActSpec(e.ctx.ActionSpec()).Calculate(input)
 	}

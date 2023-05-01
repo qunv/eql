@@ -29,6 +29,7 @@ operator
     | EQ
     | CONCAT
     | DIVIDE
+    | MULTIPLY
     ;
 
 param
