@@ -1,12 +1,12 @@
-package parser
+package core
 
 import (
-	"github.com/qunv/eql/src/core/action"
-	eqlantlr "github.com/qunv/eql/src/core/antlr"
+	"github.com/qunv/eql/core/action"
+	"github.com/qunv/eql/core/antlr"
 )
 
 type EqlInterpreter struct {
-	*eqlantlr.BaseEqlParserListener
+	*antlr.BaseEqlParserListener
 	input  action.EqlInput
 	result action.EqlValue
 	err    error
@@ -22,7 +22,7 @@ func (e *EqlInterpreter) Result() (action.EqlValue, error) {
 	return e.result, e.err
 }
 
-func (e *EqlInterpreter) ExitStatement(ctx *eqlantlr.StatementContext) {
+func (e *EqlInterpreter) ExitStatement(ctx *antlr.StatementContext) {
 	expr := action.NewExpression(ctx.Expression(), e.input)
 	result, err := expr.Evaluate()
 	if err != nil {

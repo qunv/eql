@@ -1,6 +1,9 @@
 package action
 
-import "github.com/qunv/eql/src/core/antlr"
+import (
+	"errors"
+	"github.com/qunv/eql/core/antlr"
+)
 
 type _eq struct {
 	ctx antlr.IActionSpecContext
@@ -12,7 +15,7 @@ func eq(ctx antlr.IActionSpecContext) Action {
 
 func (e _eq) Calculate(input EqlInput) (EqlValue, error) {
 	if len(e.ctx.AllParam()) != 2 {
-		panic("Len params just accept 2")
+		return nil, errors.New("len params just accept 2")
 	}
 	val1, err := param(e.ctx.Param(0), nil).evaluate(input)
 	if err != nil {

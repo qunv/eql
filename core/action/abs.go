@@ -2,7 +2,7 @@ package action
 
 import (
 	"errors"
-	"github.com/qunv/eql/src/core/antlr"
+	"github.com/qunv/eql/core/antlr"
 	"math"
 )
 

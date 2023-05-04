@@ -1,7 +1,7 @@
 package action
 
 import (
-	"github.com/qunv/eql/src/core/antlr"
+	"github.com/qunv/eql/core/antlr"
 )
 
 type _multiply struct {

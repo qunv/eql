@@ -2,7 +2,7 @@ package action
 
 import (
 	"errors"
-	"github.com/qunv/eql/src/core/antlr"
+	"github.com/qunv/eql/core/antlr"
 )
 
 type _divide struct {
@@ -15,7 +15,7 @@ func divide(ctx antlr.IActionSpecContext) Action {
 
 func (d _divide) Calculate(input EqlInput) (EqlValue, error) {
 	if len(d.ctx.AllParam()) != 2 {
-		panic("Len params just accept 2")
+		return nil, errors.New("len params just accept 2")
 	}
 
 	val1, err := param(d.ctx.Param(0), nil).evaluate(input)
@@ -36,7 +36,7 @@ func (d _divide) Calculate(input EqlInput) (EqlValue, error) {
 	}
 
 	if f2 == 0 {
-		return nil, errors.New("2nd _param must be not zero")
+		return nil, errors.New("2nd param must be not zero")
 	}
 
 	return NewEqlValue(f1 / f2), nil

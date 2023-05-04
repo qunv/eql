@@ -2,8 +2,8 @@ package action
 
 import (
 	antlr2 "github.com/antlr/antlr4/runtime/Go/antlr/v4"
-	"github.com/qunv/eql/src/core/antlr"
-	"github.com/qunv/eql/src/core/utils"
+	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/utils"
 )
 
 type Expression struct {

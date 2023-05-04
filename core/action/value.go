@@ -2,7 +2,7 @@ package action
 
 import (
 	"fmt"
-	"github.com/qunv/eql/src/core/utils"
+	"github.com/qunv/eql/core/utils"
 	"reflect"
 )
 

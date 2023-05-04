@@ -1,8 +1,8 @@
 package action
 
 import (
-	"github.com/qunv/eql/src/core/antlr"
-	"github.com/qunv/eql/src/core/utils"
+	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/utils"
 )
 
 type fn func([]EqlValue) (EqlValue, error)

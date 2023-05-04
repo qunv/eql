@@ -2,7 +2,7 @@ package utils
 
 import (
 	"errors"
-	"github.com/qunv/eql/src/core/antlr"
+	"github.com/qunv/eql/core/antlr"
 	"strconv"
 )
 

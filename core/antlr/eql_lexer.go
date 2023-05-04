@@ -1,4 +1,4 @@
-// Code generated from src/core/antlr/EqlLexer.g4 by ANTLR 4.12.0. DO NOT EDIT.
+// Code generated from core/antlr/EqlLexer.g4 by ANTLR 4.12.0. DO NOT EDIT.
 
 package antlr
 
