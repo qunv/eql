@@ -13,7 +13,7 @@ func divide(ctx antlr.IActionSpecContext) Action {
 	return _divide{ctx}
 }
 
-func (d _divide) Calculate(input [][]interface{}) (EqlValue, error) {
+func (d _divide) Calculate(input EqlInput) (EqlValue, error) {
 	if len(d.ctx.AllParam()) != 2 {
 		panic("Len params just accept 2")
 	}

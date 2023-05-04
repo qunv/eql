@@ -1,18 +1,22 @@
 package utils
 
 import (
+	"errors"
 	"github.com/qunv/eql/src/core/antlr"
 	"strconv"
 )
 
 func GetColId(alias rune) int {
-	return int(alias - 65)
+	return int(alias - 64)
 }
 
-func GetRowAndColum(ctx antlr.IDefContext) (int, int) {
+func GetRowAndColum(ctx antlr.IDefContext) (int, int, error) {
 	col := []rune(ctx.IDENTIFIER().GetText())
 	row, _ := strconv.Atoi(ctx.DIGIT().GetText())
-	return row, GetColId(col[0])
+	if row <= 0 {
+		return 0, 0, errors.New("row index not accept 0 or negative number")
+	}
+	return row, GetColId(col[0]), nil
 }
 
 func GetNumber(ctx antlr.INumberContext) float64 {

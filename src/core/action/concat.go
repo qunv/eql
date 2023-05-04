@@ -13,7 +13,7 @@ func concat(ctx antlr.IActionSpecContext) Action {
 	return _concat{ctx}
 }
 
-func (c _concat) Calculate(input [][]interface{}) (EqlValue, error) {
+func (c _concat) Calculate(input EqlInput) (EqlValue, error) {
 	if len(c.ctx.AllParam()) != 2 {
 		panic("Len params just accept 2")
 	}

@@ -3,6 +3,7 @@ package action
 import (
 	"errors"
 	"github.com/qunv/eql/src/core/antlr"
+	"math"
 )
 
 type _abs struct {
@@ -13,7 +14,7 @@ func abs(ctx antlr.IActionSpecContext) Action {
 	return _abs{ctx}
 }
 
-func (a _abs) Calculate(input [][]interface{}) (EqlValue, error) {
+func (a _abs) Calculate(input EqlInput) (EqlValue, error) {
 	params := a.ctx.AllParam()
 	if len(params) != 1 {
 		return nil, errors.New("error: len _param must be 1")
@@ -25,6 +26,9 @@ func (a _abs) Calculate(input [][]interface{}) (EqlValue, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	return NewEqlValue(result), nil
+	val, err := result.Float64()
+	if err != nil {
+		return nil, err
+	}
+	return NewEqlValue(math.Abs(val)), nil
 }

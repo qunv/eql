@@ -19,7 +19,7 @@ func param(ctx antlr.IParamContext, f fn) _param {
 	}
 }
 
-func (e _param) evaluate(input [][]interface{}) (EqlValue, error) {
+func (e _param) evaluate(input EqlInput) (EqlValue, error) {
 	if e.ctx.ActionSpec() != nil {
 		return GetActSpec(e.ctx.ActionSpec()).Calculate(input)
 	}
@@ -34,15 +34,24 @@ func (e _param) evaluate(input [][]interface{}) (EqlValue, error) {
 
 	if e.ctx.InputRange() != nil {
 		magic1 := e.ctx.InputRange().Def(0)
-		row1, col1 := utils.GetRowAndColum(magic1)
+		row1, col1, err := utils.GetRowAndColum(magic1)
+		if err != nil {
+			return nil, err
+		}
 		magic2 := e.ctx.InputRange().Def(1)
-		row2, col2 := utils.GetRowAndColum(magic2)
+		row2, col2, err := utils.GetRowAndColum(magic2)
+		if err != nil {
+			return nil, err
+		}
 		var values []EqlValue
 		for i := row1; i <= row2; i++ {
-			values = append(values, NewEqlValue(input[i][col1]), NewEqlValue(input[i][col2]))
+			values = append(values, NewEqlValue(input.Get(i, col1)), NewEqlValue(input.Get(i, col2)))
 		}
 		return e.f(values)
 	}
-	row, col := utils.GetRowAndColum(e.ctx.Def())
-	return NewEqlValue(input[row][col]), nil
+	row, col, err := utils.GetRowAndColum(e.ctx.Def())
+	if err != nil {
+		return nil, err
+	}
+	return NewEqlValue(input.Get(row, col)), nil
 }

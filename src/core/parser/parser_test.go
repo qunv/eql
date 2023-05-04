@@ -1,39 +1,171 @@
 package parser
 
 import (
+	"github.com/qunv/eql/src/core/action"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
-func TestParser_Handle(t *testing.T) {
-	input := [][]interface{}{
-		//A, B, C, D
-		{1, 2, 3, 4},
-		{1, 2, 3, 4},
-		{1, 2, 3, 4},
-		{1, 2, "test", "test"},
+var input = [][]interface{}{
+	//A, B, C, D
+	{1, 2, 3, 4},
+	{1, 2, 3, 4},
+	{1, 2, 3, 4},
+	{1, 2, "test", "test"},
+}
+
+var p = NewEqlParser(input)
+
+type TestCase struct {
+	name   string
+	eql    string
+	assert func(value action.EqlValue, err error)
+}
+
+func TestParser_Exec_ABS(t *testing.T) {
+	tests := []TestCase{
+		{
+			name: "Test abs number should return success",
+			eql:  "ABS(-1)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "1", value.String())
+			},
+		},
+		{
+			name: "Test abs with identify should return success",
+			eql:  "ABS(A1)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "1", value.String())
+			},
+		},
+		{
+			name: "Test abs with wrong number should return error",
+			eql:  "ABS(D4)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, value)
+				assert.NotNil(t, err)
+			},
+		},
+		{
+			name: "Test abs with reach len params",
+			eql:  "ABS(D4;A1)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, value)
+				assert.NotNil(t, err)
+			},
+		},
 	}
-	p := NewEqlParser(input)
-	result := p.Exec("SUM(A0:B2; (C0 + 1)*2; AVG(C1; D0); CONCAT(A2; B2)) + SUM(A0; B0) + ADD(A0;B2)")
-	f, err := result.Float64()
-	assert.Equal(t, 38.5, f)
 
-	//Add
-	result = p.Exec("ADD(A0;B2)")
-	f, err = result.Float64()
-	assert.Nil(t, err)
-	assert.Equal(t, float64(3), f)
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			value, err := p.Exec(tt.eql)
+			tt.assert(value, err)
+		})
+	}
+}
 
-	//Eq
-	result = p.Exec("EQ(C3;D3)")
-	assert.Equal(t, "true", result.String())
+func TestParser_Exec_ADD(t *testing.T) {
+	tests := []TestCase{
+		{
+			name: "Test ADD number should return success",
+			eql:  "ADD(-1; 2)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "1", value.String())
+			},
+		},
+		{
+			name: "Test ADD with identify should return success",
+			eql:  "ADD(A1; B2)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "3", value.String())
+			},
+		},
+		{
+			name: "Test ADD with identify and a number",
+			eql:  "ADD(A1; 1)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "2", value.String())
+			},
+		},
+		{
+			name: "Test ADD with reach limit len param",
+			eql:  "ADD(A1; 1; 1)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, value)
+				assert.NotNil(t, err)
+			},
+		},
+		{
+			name: "Test ADD wrong number",
+			eql:  "ADD(A1; D4)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, value)
+				assert.NotNil(t, err)
+			},
+		},
+	}
 
-	result = p.Exec("CONCAT(C3;D3)")
-	assert.Equal(t, "testtest", result.String())
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			value, err := p.Exec(tt.eql)
+			tt.assert(value, err)
+		})
+	}
+}
 
-	result = p.Exec("MULTIPLY(B0;C0)")
-	assert.Equal(t, "6", result.String())
+func TestParser_Exec_AVG(t *testing.T) {
+	tests := []TestCase{
+		{
+			name: "Test AVG number should return success",
+			eql:  "AVG(4; 2)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "3", value.String())
+			},
+		},
+		{
+			name: "Test AVG with identify should return success",
+			eql:  "AVG(A1; B2)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "1.5", value.String())
+			},
+		},
+		{
+			name: "Test AVG with identify and a number",
+			eql:  "AVG(A1; 1)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "1", value.String())
+			},
+		},
+		{
+			name: "Test ADD with multi param",
+			eql:  "AVG(A1; 1; 4)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "2", value.String())
+			},
+		},
+		{
+			name: "Test AVG with input range",
+			eql:  "AVG(A1:B2; A2)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "1.25", value.String())
+			},
+		},
+	}
 
-	result = p.Exec("DIVIDE(D0;B0)")
-	assert.Equal(t, "2", result.String())
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			value, err := p.Exec(tt.eql)
+			tt.assert(value, err)
+		})
+	}
 }

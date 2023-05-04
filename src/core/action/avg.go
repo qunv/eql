@@ -14,7 +14,7 @@ func avg(ctx antlr.IActionSpecContext) Action {
 	}
 }
 
-func (a _avg) Calculate(input [][]interface{}) (EqlValue, error) {
+func (a _avg) Calculate(input EqlInput) (EqlValue, error) {
 	params := a.ctx.AllParam()
 	result := NewEqlValue(0.0)
 	f := func(values []EqlValue) (EqlValue, error) {

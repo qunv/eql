@@ -14,7 +14,7 @@ func sum(ctx antlr.IActionSpecContext) Action {
 	}
 }
 
-func (s _sum) Calculate(input [][]interface{}) (EqlValue, error) {
+func (s _sum) Calculate(input EqlInput) (EqlValue, error) {
 	params := s.ctx.AllParam()
 	f := func(values []EqlValue) (EqlValue, error) {
 		r := NewEqlValue(0.0)

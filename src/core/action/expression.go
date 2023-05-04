@@ -8,10 +8,10 @@ import (
 
 type Expression struct {
 	ctx   antlr.IExpressionContext
-	input [][]interface{}
+	input EqlInput
 }
 
-func NewExpression(ctx antlr.IExpressionContext, input [][]interface{}) *Expression {
+func NewExpression(ctx antlr.IExpressionContext, input EqlInput) *Expression {
 	return &Expression{
 		ctx:   ctx,
 		input: input,
@@ -57,8 +57,11 @@ func (e *Expression) evaluateFactor(ctx antlr.IFactorContext) (EqlValue, error) 
 	}
 
 	if ctx.Def() != nil {
-		row, col := utils.GetRowAndColum(ctx.Def())
-		return NewEqlValue(e.input[row][col]), nil
+		row, col, err := utils.GetRowAndColum(ctx.Def())
+		if err != nil {
+			return nil, err
+		}
+		return NewEqlValue(e.input.Get(row, col)), nil
 	}
 
 	return NewExpression(ctx.Expression(), e.input).Evaluate()
