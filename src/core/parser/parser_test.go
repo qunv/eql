@@ -1,9 +1,10 @@
 package parser
 
 import (
+	"testing"
+
 	"github.com/qunv/eql/src/core/action"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 var input = [][]interface{}{
@@ -158,6 +159,34 @@ func TestParser_Exec_AVG(t *testing.T) {
 			assert: func(value action.EqlValue, err error) {
 				assert.Nil(t, err)
 				assert.Equal(t, "1.25", value.String())
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			value, err := p.Exec(tt.eql)
+			tt.assert(value, err)
+		})
+	}
+}
+
+func TestParser_Exec_CONCAT(t *testing.T) {
+	tests := []TestCase{
+		{
+			name: "Test CONCAT number should return success",
+			eql:  "CONCAT(4; 2)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "42", value.String())
+			},
+		},
+		{
+			name: "Test CONCAT number and identify should return success",
+			eql:  "CONCAT(4; D4)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "4test", value.String())
 			},
 		},
 	}

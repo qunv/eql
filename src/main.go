@@ -27,7 +27,7 @@ func main() {
 			})
 		}
 		parser := parser2.NewEqlParser(input.Data)
-		result := parser.Exec(input.Q)
+		result, _ := parser.Exec(input.Q)
 		ctx.JSON(http.StatusOK, &Response{
 			Data: result,
 		})
