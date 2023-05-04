@@ -45,7 +45,11 @@ func (e _param) evaluate(input EqlInput) (EqlValue, error) {
 		}
 		var values []EqlValue
 		for i := row1; i <= row2; i++ {
-			values = append(values, NewEqlValue(input.Get(i, col1)), NewEqlValue(input.Get(i, col2)))
+			if col1 != col2 {
+				values = append(values, NewEqlValue(input.Get(i, col1)), NewEqlValue(input.Get(i, col2)))
+			} else {
+				values = append(values, NewEqlValue(input.Get(i, col1)))
+			}
 		}
 		return e.f(values)
 	}
