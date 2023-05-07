@@ -30,6 +30,7 @@ operator
     | CONCAT
     | DIVIDE
     | MULTIPLY
+    | GT
     ;
 
 param

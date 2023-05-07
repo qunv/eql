@@ -37,6 +37,9 @@ func GetActSpec(ctx antlr.IActionSpecContext) Action {
 		if operator.DIVIDE() != nil {
 			return divide(ctx)
 		}
+		if operator.GT() != nil {
+			return gt(ctx)
+		}
 	}
 	panic("type not support!")
 }

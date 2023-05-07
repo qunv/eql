@@ -28,6 +28,7 @@ DIVIDE                  : 'DIVIDE';
 MULTIPLY                : 'MULTIPLY';
 EQ                      : 'EQ';
 CONCAT                  : 'CONCAT';
+GT                      : 'GT';
 
 DIGIT                   : [0-9]+;
 IDENTIFIER              : [a-zA-Z]+;

@@ -2,10 +2,11 @@ package eql
 
 import (
 	"encoding/csv"
-	"github.com/qunv/eql/core/action"
 	"log"
 	"os"
 	"testing"
+
+	"github.com/qunv/eql/core/action"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -308,6 +309,34 @@ func TestParser_Exec_SUM(t *testing.T) {
 			assert: func(value action.EqlValue, err error) {
 				assert.Nil(t, err)
 				assert.Equal(t, "9", value.String())
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			value, err := p.Exec(tt.eql)
+			tt.assert(value, err)
+		})
+	}
+}
+
+func TestParser_Exec_GT(t *testing.T) {
+	tests := []TestCase{
+		{
+			name: "Test GT number should return success",
+			eql:  "GT(4; 2)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "true", value.String())
+			},
+		},
+		{
+			name: "Test GT number and identify should return success",
+			eql:  "GT(C4; D4)",
+			assert: func(value action.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "false", value.String())
 			},
 		},
 	}
