@@ -50,12 +50,13 @@ func main() {
 
 List of functions are supported currently, happy to contribute.
 
-### Math
+<details><summary>Math</summary>
 
 - SUM
 - ABS
+</details>
 
-### Operator
+<details><summary>Operator</summary>
 
 - ADD
 - AVG
@@ -63,6 +64,8 @@ List of functions are supported currently, happy to contribute.
 - DIVIDE
 - EQ
 - MULTIPLY
+- GT
+</details>
 
 # Contribute
 
