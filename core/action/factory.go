@@ -40,6 +40,9 @@ func GetActSpec(ctx antlr.IActionSpecContext) Action {
 		if operator.GT() != nil {
 			return gt(ctx)
 		}
+		if operator.GTE() != nil {
+			return gte(ctx)
+		}
 	}
 	panic("type not support!")
 }

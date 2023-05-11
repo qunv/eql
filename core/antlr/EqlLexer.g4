@@ -29,6 +29,7 @@ MULTIPLY                : 'MULTIPLY';
 EQ                      : 'EQ';
 CONCAT                  : 'CONCAT';
 GT                      : 'GT';
+GTE                     : 'GTE';
 
 DIGIT                   : [0-9]+;
 IDENTIFIER              : [a-zA-Z]+;

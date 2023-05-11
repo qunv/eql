@@ -65,6 +65,7 @@ List of functions are supported currently, happy to contribute.
 - EQ
 - MULTIPLY
 - GT
+- GTE
 </details>
 
 # Contribute

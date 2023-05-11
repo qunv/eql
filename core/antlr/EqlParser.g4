@@ -31,6 +31,7 @@ operator
     | DIVIDE
     | MULTIPLY
     | GT
+    | GTE
     ;
 
 param
