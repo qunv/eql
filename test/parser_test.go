@@ -1,7 +1,8 @@
-package eql
+package test
 
 import (
 	"encoding/csv"
+	"github.com/qunv/eql"
 	"log"
 	"os"
 	"testing"
@@ -13,7 +14,7 @@ import (
 
 var input = initData()
 
-var p = NewEqlParser(input)
+var p = eql.NewEqlParser(input)
 
 type TestCase struct {
 	name   string
