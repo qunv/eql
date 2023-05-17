@@ -10,6 +10,7 @@ type EqlValue interface {
 	Value() interface{}
 	Float64() (float64, error)
 	String() string
+	IsBool() bool
 	Add(e EqlValue) error
 	Minus(e EqlValue) error
 	Mul(e EqlValue) error
@@ -87,4 +88,8 @@ func (v *value) Div(e EqlValue) error {
 	}
 	v.v = old / val
 	return nil
+}
+
+func (v *value) IsBool() bool {
+	return v.t.Kind() == reflect.Bool
 }

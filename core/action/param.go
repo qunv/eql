@@ -21,7 +21,7 @@ func param(ctx antlr.IParamContext, f fn) _param {
 
 func (e _param) evaluate(input EqlInput) (EqlValue, error) {
 	if e.ctx.ActionSpec() != nil {
-		return GetActSpec(e.ctx.ActionSpec()).Calculate(input)
+		return GetActSpec(e.ctx.ActionSpec()).Evaluate(input)
 	}
 
 	if e.ctx.Number() != nil {
@@ -30,6 +30,14 @@ func (e _param) evaluate(input EqlInput) (EqlValue, error) {
 
 	if e.ctx.Expression() != nil {
 		return NewExpression(e.ctx.Expression(), input).Evaluate()
+	}
+
+	if e.ctx.STRING() != nil {
+		str := e.ctx.STRING().GetText()
+		if len(str) <= 2 {
+			return NewEqlValue(""), nil
+		}
+		return NewEqlValue(str[1 : len(str)-1]), nil
 	}
 
 	if e.ctx.InputRange() != nil {

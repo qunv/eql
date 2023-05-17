@@ -44,5 +44,11 @@ func GetActSpec(ctx antlr.IActionSpecContext) Action {
 			return gte(ctx)
 		}
 	}
+
+	if logical := type_.Logical(); logical != nil {
+		if logical.IF() != nil {
+			return if_(ctx)
+		}
+	}
 	panic("type not support!")
 }

@@ -12,7 +12,7 @@ func GetColId(alias rune) int {
 
 func GetRowAndColum(ctx antlr.IDefContext) (int, int, error) {
 	col := []rune(ctx.IDENTIFIER().GetText())
-	row, _ := strconv.Atoi(ctx.DIGIT().GetText())
+	row, _ := strconv.Atoi(ctx.INT().GetText())
 	if row <= 0 {
 		return 0, 0, errors.New("row index not accept 0 or negative number")
 	}
@@ -20,10 +20,7 @@ func GetRowAndColum(ctx antlr.IDefContext) (int, int, error) {
 }
 
 func GetNumber(ctx antlr.INumberContext) float64 {
-	f, _ := strconv.ParseFloat(ctx.DIGIT().GetText(), 64)
-	if ctx.MINUS() != nil {
-		return -f
-	}
+	f, _ := strconv.ParseFloat(ctx.GetText(), 64)
 	return f
 }
 

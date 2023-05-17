@@ -38,6 +38,12 @@ func (s *BaseEqlParserListener) EnterExpression(ctx *ExpressionContext) {}
 // ExitExpression is called when production expression is exited.
 func (s *BaseEqlParserListener) ExitExpression(ctx *ExpressionContext) {}
 
+// EnterCompair is called when production compair is entered.
+func (s *BaseEqlParserListener) EnterCompair(ctx *CompairContext) {}
+
+// ExitCompair is called when production compair is exited.
+func (s *BaseEqlParserListener) ExitCompair(ctx *CompairContext) {}
+
 // EnterTerm is called when production term is entered.
 func (s *BaseEqlParserListener) EnterTerm(ctx *TermContext) {}
 
@@ -67,6 +73,12 @@ func (s *BaseEqlParserListener) EnterOperator(ctx *OperatorContext) {}
 
 // ExitOperator is called when production operator is exited.
 func (s *BaseEqlParserListener) ExitOperator(ctx *OperatorContext) {}
+
+// EnterLogical is called when production logical is entered.
+func (s *BaseEqlParserListener) EnterLogical(ctx *LogicalContext) {}
+
+// ExitLogical is called when production logical is exited.
+func (s *BaseEqlParserListener) ExitLogical(ctx *LogicalContext) {}
 
 // EnterParam is called when production param is entered.
 func (s *BaseEqlParserListener) EnterParam(ctx *ParamContext) {}
