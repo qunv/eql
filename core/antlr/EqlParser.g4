@@ -13,12 +13,17 @@ statement
 
 expression
     : term ((PLUS | MINUS) term)*
+    | term (compair term)?
     ;
+
+compair: (GREATER_THAN | LESS_THAN)? EQUAL?;
 
 term: factor ((MULT | DIV) factor)*;
 
-actionSpec: type LPAREN (param (SEMI param)*) RPAREN;
-type: math | operator;
+actionSpec: type LPAREN (param (COMMA param)*) RPAREN;
+
+type: math | operator | logical;
+
 math
     : SUM
     | ABS
@@ -34,19 +39,33 @@ operator
     | GTE
     ;
 
+logical
+    : IF
+    ;
+
 param
     : def
     | inputRange
     | number
+    | STRING
     | actionSpec
     | expression
     ;
+
 inputRange: def COLON def;
-def: IDENTIFIER DIGIT;
-number: MINUS? DIGIT;
-factor:
-    number
+
+def: IDENTIFIER INT;
+
+number
+    : INT
+    | DECIMAL
+    ;
+
+factor
+    : number
     | def
     | actionSpec
     | LPAREN expression RPAREN
+    | TRUE
+    | FALSE
     ;

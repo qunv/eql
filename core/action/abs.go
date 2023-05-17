@@ -14,7 +14,7 @@ func abs(ctx antlr.IActionSpecContext) Action {
 	return _abs{ctx}
 }
 
-func (a _abs) Calculate(input EqlInput) (EqlValue, error) {
+func (a _abs) Evaluate(input EqlInput) (EqlValue, error) {
 	params := a.ctx.AllParam()
 	if len(params) != 1 {
 		return nil, errors.New("error: len _param must be 1")

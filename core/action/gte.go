@@ -13,7 +13,7 @@ func gte(ctx antlr.IActionSpecContext) Action {
 	return _gte{ctx}
 }
 
-func (g _gte) Calculate(input EqlInput) (EqlValue, error) {
+func (g _gte) Evaluate(input EqlInput) (EqlValue, error) {
 	if len(g.ctx.AllParam()) != 2 {
 		return nil, errors.New("len params just accept 2")
 	}

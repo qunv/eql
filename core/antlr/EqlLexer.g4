@@ -16,6 +16,11 @@ EQUAL                   : '=';
 SEMI                    : ';';
 COLON                   : ':';
 COMMA                   : ',';
+DOT                     : '.';
+GREATER_THAN            : '>';
+LESS_THAN               : '<';
+TRUE                    : 'TRUE';
+FALSE                   : 'FALSE';
 
 // math
 SUM                     : 'SUM';
@@ -31,7 +36,18 @@ CONCAT                  : 'CONCAT';
 GT                      : 'GT';
 GTE                     : 'GTE';
 
-DIGIT                   : [0-9]+;
+INT                     : MINUS? DIGITS;
+DECIMAL                 : MINUS? DIGITS DOT DIGITS;
+DIGIT                   : [0-9];
+
+
+STRING : '"' ( ESC_SEQ | ~('\\'|'"') )* '"';
+fragment ESC_SEQ : '\\' [btnfr"'\\];
+fragment DIGITS: DIGIT+;
+
+// logical
+IF                      : 'IF';
+
 IDENTIFIER              : [a-zA-Z]+;
 
 WS                      : [ \t\r\n]+ -> skip;

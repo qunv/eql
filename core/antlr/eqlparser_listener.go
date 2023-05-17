@@ -16,6 +16,9 @@ type EqlParserListener interface {
 	// EnterExpression is called when entering the expression production.
 	EnterExpression(c *ExpressionContext)
 
+	// EnterCompair is called when entering the compair production.
+	EnterCompair(c *CompairContext)
+
 	// EnterTerm is called when entering the term production.
 	EnterTerm(c *TermContext)
 
@@ -30,6 +33,9 @@ type EqlParserListener interface {
 
 	// EnterOperator is called when entering the operator production.
 	EnterOperator(c *OperatorContext)
+
+	// EnterLogical is called when entering the logical production.
+	EnterLogical(c *LogicalContext)
 
 	// EnterParam is called when entering the param production.
 	EnterParam(c *ParamContext)
@@ -55,6 +61,9 @@ type EqlParserListener interface {
 	// ExitExpression is called when exiting the expression production.
 	ExitExpression(c *ExpressionContext)
 
+	// ExitCompair is called when exiting the compair production.
+	ExitCompair(c *CompairContext)
+
 	// ExitTerm is called when exiting the term production.
 	ExitTerm(c *TermContext)
 
@@ -69,6 +78,9 @@ type EqlParserListener interface {
 
 	// ExitOperator is called when exiting the operator production.
 	ExitOperator(c *OperatorContext)
+
+	// ExitLogical is called when exiting the logical production.
+	ExitLogical(c *LogicalContext)
 
 	// ExitParam is called when exiting the param production.
 	ExitParam(c *ParamContext)

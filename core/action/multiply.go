@@ -12,7 +12,7 @@ func multiply(ctx antlr.IActionSpecContext) Action {
 	return _multiply{ctx}
 }
 
-func (d _multiply) Calculate(input EqlInput) (EqlValue, error) {
+func (d _multiply) Evaluate(input EqlInput) (EqlValue, error) {
 	if len(d.ctx.AllParam()) != 2 {
 		panic("Len params just accept 2")
 	}

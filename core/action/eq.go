@@ -13,7 +13,7 @@ func eq(ctx antlr.IActionSpecContext) Action {
 	return _eq{ctx}
 }
 
-func (e _eq) Calculate(input EqlInput) (EqlValue, error) {
+func (e _eq) Evaluate(input EqlInput) (EqlValue, error) {
 	if len(e.ctx.AllParam()) != 2 {
 		return nil, errors.New("len params just accept 2")
 	}
