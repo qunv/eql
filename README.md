@@ -52,8 +52,81 @@ List of functions are supported currently, happy to contribute.
 
 <details><summary>Math</summary>
 
-- SUM
-- ABS
+<blockquote>
+  <details><summary> SUM </summary>
+
+Returns the sum of a series of numbers and/or cells
+
+#### Sample usage
+
+```shell
+SUM(A2:A100)
+
+SUM(1,2,3,4,5)
+
+SUM(1,2,A2:A50)
+
+SUM(1,SUM(A1:A3, 1), 2+A3)
+```
+
+#### Syntax
+
+```shell
+SUM(value1, [value2, ...])
+```
+
+- `value1` - The first number or range to add together.
+
+- `value2`, ... - [ OPTIONAL ] - Additional numbers or ranges to add to value1.
+
+#### Example
+
+data
+
+| A   | B   | C   |
+|-----|-----|-----|
+| 1   | 3   | 5   |
+| 2   | 4   | 6   |
+
+
+| Formula                | result |
+|------------------------|--------|
+| SUM(4, 2)              | 6      |
+| SUM(A1, B1)            | 4      |
+| SUM(A1:B2)             | 10     |
+| SUM(A1:B2, SUM(3, C1)) | 18     |
+
+  </details>
+
+  <details><summary> ABS </summary>
+
+Returns the absolute value of a number.
+
+#### Sample usage
+
+```shell
+ABS(-2)
+
+ABS(A2)
+```
+
+#### Syntax
+
+```shell
+ABS(value)
+```
+
+- `value` - The number of which to return the absolute value.
+
+#### Example
+
+| Formula | result   |
+|---------|----------|
+| ABS(-1) | 1        |
+| ABS(A1) | 1        |
+
+  </details>
+</blockquote>
 </details>
 
 <details><summary>Operator</summary>
