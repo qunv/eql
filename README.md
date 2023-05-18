@@ -69,7 +69,7 @@ List of functions are supported currently, happy to contribute.
 </details>
 
 <details><summary> Logical </summary>
-
+<blockquote>
   <details><summary> IF </summary>
 
 Returns one value if a logical expression is `TRUE` and another if it is `FALSE`
@@ -90,11 +90,11 @@ IF(TRUE,4,5)
 IF(logical_expression, value_if_true, value_if_false)
 ```
 
- - logical_expression - An expression or reference to a cell containing an expression that represents some logical value, i.e. TRUE or FALSE.
+- `logical_expression` - An expression or reference to a cell containing an expression that represents some logical value, i.e. TRUE or FALSE.
 
- - value_if_true - The value the function returns if logical_expression is TRUE.
+- `value_if_true` - The value the function returns if logical_expression is TRUE.
 
- - value_if_false - The value the function returns if logical_expression is FALSE.
+- `value_if_false` - The value the function returns if logical_expression is FALSE.
 
 #### Example
 
@@ -106,6 +106,8 @@ IF(logical_expression, value_if_true, value_if_false)
 | IF(1>SUM(1, 2), 1, 2)    | 2        |
 
   </details>
+</blockquote>
+
 </details>
 
 # Contribute
