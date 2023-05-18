@@ -68,6 +68,46 @@ List of functions are supported currently, happy to contribute.
 - GTE
 </details>
 
+<details><summary> Logical </summary>
+
+  <details><summary> IF </summary>
+
+Returns one value if a logical expression is `TRUE` and another if it is `FALSE`
+
+#### Sample usage
+
+```shell
+IF(A2 = "foo","A2 is foo")
+
+IF(A2,"A2 was true","A2 was false")
+
+IF(TRUE,4,5)
+```
+
+#### Syntax
+
+```shell
+IF(logical_expression, value_if_true, value_if_false)
+```
+
+ - logical_expression - An expression or reference to a cell containing an expression that represents some logical value, i.e. TRUE or FALSE.
+
+ - value_if_true - The value the function returns if logical_expression is TRUE.
+
+ - value_if_false - The value the function returns if logical_expression is FALSE.
+
+#### Example
+
+| Formula                  | result   |
+|--------------------------|----------|
+| IF(FALSE, 1, "false ne") | false ne |
+| IF(TRUE=TRUE, 1, 2)      | 1        |
+| IF(TRUE=TRUE, 1, 2)      | 1        |
+| IF(1>SUM(1, 2), 1, 2)    | 2        |
+
+  </details>
+</details>
+
 # Contribute
 
 This repo is required [antlr](https://www.antlr.org/) to define grammar, make sure install it, change your own `EqlLexer.g4`
