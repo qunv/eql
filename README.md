@@ -53,7 +53,9 @@ List of functions are supported currently, happy to contribute.
 <details><summary>Math</summary>
 
 <blockquote>
-  <details><summary> SUM </summary>
+
+[*        SUM           *]: <> ()
+<details><summary> SUM </summary><blockquote>
 
 Returns the sum of a series of numbers and/or cells
 
@@ -96,9 +98,12 @@ data
 | SUM(A1:B2)             | 10     |
 | SUM(A1:B2, SUM(3, C1)) | 18     |
 
-  </details>
+</blockquote>
+</details>
 
-  <details><summary> ABS </summary>
+[*        ABS           *]: <> ()
+
+<details><summary> ABS </summary><blockquote>
 
 Returns the absolute value of a number.
 
@@ -125,25 +130,297 @@ ABS(value)
 | ABS(-1) | 1        |
 | ABS(A1) | 1        |
 
-  </details>
+</blockquote>
+</details>
+
 </blockquote>
 </details>
 
 <details><summary>Operator</summary>
+<blockquote>
 
-- ADD
-- AVG
-- CONCAT
-- DIVIDE
-- EQ
-- MULTIPLY
-- GT
-- GTE
+[*        ADD           *]: <> ()
+<details><summary> ADD </summary><blockquote>
+
+Returns the sum of two numbers. Equivalent to the `+` operator.
+
+#### Sample usage
+
+```shell
+ADD(A2,A3)
+
+ADD(3,4)
+
+ADD(3,ADD(A2, A3))
+```
+
+#### Syntax
+
+```shell
+ADD(value1, value2)
+```
+
+- `value1` - The first addend.
+
+- `value2` - The second addend.
+
+#### Example
+
+| Formula    | result   |
+|------------|----------|
+| ADD(-1, 2) | 1        |
+
+</blockquote>
+</details>
+
+[*        AVG           *]: <> ()
+
+<details><summary> AVG </summary><blockquote>
+
+Returns the average of a series of numbers and/or cells
+
+#### Sample usage
+
+```shell
+AVG(A2:A100)
+
+AVG(1,2,3,4,5)
+
+AVG(1,2,A2:A50)
+
+AVG(1,AVG(A1:A3, 1), 2+A3)
+```
+
+#### Syntax
+
+```shell
+AVG(value1, [value2, ...])
+```
+
+- `value1` - The first number or range to add together.
+
+- `value2`, ... - [ OPTIONAL ] - Additional numbers or ranges to add to value1.
+
+#### Example
+
+| Formula      | result |
+|--------------|--------|
+| AVG(1, 2, 3) | 2      |
+
+</blockquote>
+</details>
+
+[*        CONCAT        *]: <> ()
+
+<details><summary> CONCAT </summary><blockquote>
+
+Returns the concatenation of two values. Equivalent to the `&` operator.
+
+#### Sample usage
+
+```shell
+CONCAT("foo","bar")
+
+CONCAT(17,76)
+```
+
+#### Syntax
+
+```shell
+CONCAT(value1, value2)
+```
+
+- `value1` - The value to which value2 will be appended.
+
+- `value2` - The value to append to value1.
+
+#### Example
+
+| Formula              | result |
+|----------------------|--------|
+| CONCAT("foo", "bar") | foobar |
+| CONCAT(1, 2)         | 12     |
+
+</blockquote>
+</details>
+
+[ *        DIVIDE        * ]: <> ()
+
+<details><summary> DIVIDE </summary><blockquote>
+
+Returns one number divided by another. Equivalent to the `/` operator.
+
+#### Sample usage
+
+```shell
+DIVIDE(4,2)
+
+DIVIDE(A2,B2)
+```
+
+#### Syntax
+
+```shell
+DIVIDE(dividend, divisor)
+```
+
+- dividend - The number to be divided.
+
+- divisor - The number to divide by.
+
+  - divisor cannot equal 0.
+
+#### Example
+
+| Formula      | result |
+|--------------|--------|
+| DIVIDE(4, 2) | 2      |
+| CONCAT(5, 2) | 2.5    |
+
+</blockquote>
+</details>
+
+[ *         EQ           * ]: <> ()
+
+<details><summary> EQ </summary><blockquote>
+
+Returns "TRUE" if two specified values are equal and "FALSE" otherwise. Equivalent to the "=" operator.
+
+#### Sample usage
+
+```shell
+EQ(A2,A3)
+
+EQ(2,3)
+```
+
+#### Syntax
+
+```shell
+EQ(value1, value2)
+```
+
+- `value1` - The first value.
+
+- `value2` - The value to test against value1 for equality.
+
+#### Example
+
+| Formula  | result |
+|----------|--------|
+| EQ(4, 2) | FALSE  |
+| EQ(2, 2) | TRUE   |
+
+</blockquote>
+</details>
+
+[ *         MULTIPLY     * ]: <> ()
+
+<details><summary> MULTIPLY </summary><blockquote>
+
+Returns the product of two numbers. Equivalent to the `*` operator.
+
+#### Sample usage
+
+```shell
+MULTIPLY(A2,B2)
+
+MULTIPLY(2,3)
+```
+
+#### Syntax
+
+```shell
+MULTIPLY(factor1, factor2)
+```
+
+- `factor1` - The first multiplicand.
+
+- `factor2` - The second multiplicand.
+
+#### Example
+
+| Formula        | result |
+|----------------|--------|
+| MULTIPLY(4, 2) | 8      |
+
+</blockquote>
+</details>
+
+[ *         GTE          * ]: <> ()
+
+<details><summary> GTE </summary><blockquote>
+
+Returns `TRUE` if the first argument is greater than or equal to the second, and `FALSE` otherwise. Equivalent to the `>=` operator.
+
+#### Sample usage
+
+```shell
+GTE(A2,A3)
+
+GTE(2,3)
+```
+
+#### Syntax
+
+```shell
+GTE(value1, value2)
+```
+
+- `value1` - The value to test as being greater than or equal to value2.
+
+- `value2` - The second value.
+
+
+#### Example
+
+| Formula   | result |
+|-----------|--------|
+| GTE(4, 2) | TRUE   |
+
+</blockquote>
+</details>
+
+[ *         GT           * ]: <> ()
+
+<details><summary> GT </summary><blockquote>
+
+Returns `TRUE` if the first argument is greater than to the second, and `FALSE` otherwise. Equivalent to the `>` operator.
+
+#### Sample usage
+
+```shell
+GT(A2,A3)
+
+GT(2,3)
+```
+
+#### Syntax
+
+```shell
+GT(value1, value2)
+```
+
+- `value1` - The value to test as being greater than to value2.
+
+- `value2` - The second value.
+
+#### Example
+
+| Formula  | result |
+|----------|--------|
+| GT(4, 2) | TRUE   |
+
+</blockquote>
+</details>
+</blockquote>
 </details>
 
 <details><summary> Logical </summary>
 <blockquote>
-  <details><summary> IF </summary>
+
+[ *         IF           * ]: <> ()
+<details><summary> IF </summary><blockquote>
 
 Returns one value if a logical expression is `TRUE` and another if it is `FALSE`
 
@@ -178,9 +455,9 @@ IF(logical_expression, value_if_true, value_if_false)
 | IF(TRUE=TRUE, 1, 2)      | 1        |
 | IF(1>SUM(1, 2), 1, 2)    | 2        |
 
-  </details>
-</blockquote>
+</blockquote></details>
 
+</blockquote>
 </details>
 
 # Contribute
