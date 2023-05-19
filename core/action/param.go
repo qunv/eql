@@ -20,26 +20,6 @@ func param(ctx antlr.IParamContext, f fn) _param {
 }
 
 func (e _param) evaluate(input EqlInput) (EqlValue, error) {
-	if e.ctx.ActionSpec() != nil {
-		return GetActSpec(e.ctx.ActionSpec()).Evaluate(input)
-	}
-
-	if e.ctx.Number() != nil {
-		return NewEqlValue(utils.GetNumber(e.ctx.Number())), nil
-	}
-
-	if e.ctx.Expression() != nil {
-		return NewExpression(e.ctx.Expression(), input).Evaluate()
-	}
-
-	if e.ctx.STRING() != nil {
-		str := e.ctx.STRING().GetText()
-		if len(str) <= 2 {
-			return NewEqlValue(""), nil
-		}
-		return NewEqlValue(str[1 : len(str)-1]), nil
-	}
-
 	if e.ctx.InputRange() != nil {
 		magic1 := e.ctx.InputRange().Def(0)
 		row1, col1, err := utils.GetRowAndColum(magic1)
@@ -61,9 +41,5 @@ func (e _param) evaluate(input EqlInput) (EqlValue, error) {
 		}
 		return e.f(values)
 	}
-	row, col, err := utils.GetRowAndColum(e.ctx.Def())
-	if err != nil {
-		return nil, err
-	}
-	return NewEqlValue(input.Get(row, col)), nil
+	return NewExpression(e.ctx.Expression(), input).Evaluate()
 }

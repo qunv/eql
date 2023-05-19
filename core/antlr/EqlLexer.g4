@@ -35,6 +35,7 @@ EQ                      : 'EQ';
 CONCAT                  : 'CONCAT';
 GT                      : 'GT';
 GTE                     : 'GTE';
+LAMBDA                  : 'LAMBDA';
 
 INT                     : MINUS? DIGITS;
 DECIMAL                 : MINUS? DIGITS DOT DIGITS;
