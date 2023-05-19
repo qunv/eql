@@ -25,6 +25,9 @@ type EqlParserListener interface {
 	// EnterActionSpec is called when entering the actionSpec production.
 	EnterActionSpec(c *ActionSpecContext)
 
+	// EnterParam is called when entering the param production.
+	EnterParam(c *ParamContext)
+
 	// EnterType is called when entering the type production.
 	EnterType(c *TypeContext)
 
@@ -36,9 +39,6 @@ type EqlParserListener interface {
 
 	// EnterLogical is called when entering the logical production.
 	EnterLogical(c *LogicalContext)
-
-	// EnterParam is called when entering the param production.
-	EnterParam(c *ParamContext)
 
 	// EnterInputRange is called when entering the inputRange production.
 	EnterInputRange(c *InputRangeContext)
@@ -70,6 +70,9 @@ type EqlParserListener interface {
 	// ExitActionSpec is called when exiting the actionSpec production.
 	ExitActionSpec(c *ActionSpecContext)
 
+	// ExitParam is called when exiting the param production.
+	ExitParam(c *ParamContext)
+
 	// ExitType is called when exiting the type production.
 	ExitType(c *TypeContext)
 
@@ -81,9 +84,6 @@ type EqlParserListener interface {
 
 	// ExitLogical is called when exiting the logical production.
 	ExitLogical(c *LogicalContext)
-
-	// ExitParam is called when exiting the param production.
-	ExitParam(c *ParamContext)
 
 	// ExitInputRange is called when exiting the inputRange production.
 	ExitInputRange(c *InputRangeContext)

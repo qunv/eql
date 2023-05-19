@@ -56,6 +56,12 @@ func (s *BaseEqlParserListener) EnterActionSpec(ctx *ActionSpecContext) {}
 // ExitActionSpec is called when production actionSpec is exited.
 func (s *BaseEqlParserListener) ExitActionSpec(ctx *ActionSpecContext) {}
 
+// EnterParam is called when production param is entered.
+func (s *BaseEqlParserListener) EnterParam(ctx *ParamContext) {}
+
+// ExitParam is called when production param is exited.
+func (s *BaseEqlParserListener) ExitParam(ctx *ParamContext) {}
+
 // EnterType is called when production type is entered.
 func (s *BaseEqlParserListener) EnterType(ctx *TypeContext) {}
 
@@ -79,12 +85,6 @@ func (s *BaseEqlParserListener) EnterLogical(ctx *LogicalContext) {}
 
 // ExitLogical is called when production logical is exited.
 func (s *BaseEqlParserListener) ExitLogical(ctx *LogicalContext) {}
-
-// EnterParam is called when production param is entered.
-func (s *BaseEqlParserListener) EnterParam(ctx *ParamContext) {}
-
-// ExitParam is called when production param is exited.
-func (s *BaseEqlParserListener) ExitParam(ctx *ParamContext) {}
 
 // EnterInputRange is called when production inputRange is entered.
 func (s *BaseEqlParserListener) EnterInputRange(ctx *InputRangeContext) {}

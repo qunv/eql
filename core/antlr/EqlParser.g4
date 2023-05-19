@@ -22,7 +22,16 @@ term: factor ((MULT | DIV) factor)*;
 
 actionSpec: type LPAREN (param (COMMA param)*) RPAREN;
 
-type: math | operator | logical;
+param
+    : inputRange
+    | expression
+    ;
+
+type
+    : math
+    | operator
+    | logical
+    ;
 
 math
     : SUM
@@ -41,16 +50,9 @@ operator
 
 logical
     : IF
+    | LAMBDA
     ;
 
-param
-    : def
-    | inputRange
-    | number
-    | STRING
-    | actionSpec
-    | expression
-    ;
 
 inputRange: def COLON def;
 
@@ -65,7 +67,9 @@ factor
     : number
     | def
     | actionSpec
-    | LPAREN expression RPAREN
     | TRUE
     | FALSE
+    | IDENTIFIER
+    | STRING
+    | LPAREN expression RPAREN
     ;

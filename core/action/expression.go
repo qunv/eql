@@ -109,6 +109,14 @@ func (e *Expression) evaluateFactor(ctx antlr.IFactorContext) (EqlValue, error) 
 		return NewEqlValue(false), nil
 	}
 
+	if ctx.STRING() != nil {
+		str := ctx.STRING().GetText()
+		if len(str) <= 2 {
+			return NewEqlValue(""), nil
+		}
+		return NewEqlValue(str[1 : len(str)-1]), nil
+	}
+
 	if ctx.ActionSpec() != nil {
 		return e.evaluateActSpec(ctx.ActionSpec())
 	}
