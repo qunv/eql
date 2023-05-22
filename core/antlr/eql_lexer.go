@@ -1,13 +1,12 @@
-// Code generated from core/antlr/EqlLexer.g4 by ANTLR 4.12.0. DO NOT EDIT.
+// Code generated from core/antlr/EqlLexer.g4 by ANTLR 4.13.0. DO NOT EDIT.
 
 package antlr
 
 import (
 	"fmt"
+	"github.com/antlr4-go/antlr/v4"
 	"sync"
 	"unicode"
-
-	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
 )
 
 // Suppress unused import error
@@ -22,48 +21,48 @@ type EqlLexer struct {
 	// TODO: EOF string
 }
 
-var eqllexerLexerStaticData struct {
+var EqlLexerLexerStaticData struct {
 	once                   sync.Once
 	serializedATN          []int32
-	channelNames           []string
-	modeNames              []string
-	literalNames           []string
-	symbolicNames          []string
-	ruleNames              []string
-	predictionContextCache *antlr.PredictionContextCache
+	ChannelNames           []string
+	ModeNames              []string
+	LiteralNames           []string
+	SymbolicNames          []string
+	RuleNames              []string
+	PredictionContextCache *antlr.PredictionContextCache
 	atn                    *antlr.ATN
 	decisionToDFA          []*antlr.DFA
 }
 
 func eqllexerLexerInit() {
-	staticData := &eqllexerLexerStaticData
-	staticData.channelNames = []string{
+	staticData := &EqlLexerLexerStaticData
+	staticData.ChannelNames = []string{
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN",
 	}
-	staticData.modeNames = []string{
+	staticData.ModeNames = []string{
 		"DEFAULT_MODE",
 	}
-	staticData.literalNames = []string{
+	staticData.LiteralNames = []string{
 		"", "'+'", "'-'", "'/'", "'*'", "'('", "')'", "'{'", "'}'", "'['", "']'",
 		"'='", "';'", "':'", "','", "'.'", "'>'", "'<'", "'TRUE'", "'FALSE'",
 		"'SUM'", "'ABS'", "'AVG'", "'ADD'", "'DIVIDE'", "'MULTIPLY'", "'EQ'",
 		"'CONCAT'", "'GT'", "'GTE'", "'LAMBDA'", "", "", "", "", "'IF'",
 	}
-	staticData.symbolicNames = []string{
+	staticData.SymbolicNames = []string{
 		"", "PLUS", "MINUS", "DIV", "MULT", "LPAREN", "RPAREN", "LCURLY", "RCURLY",
 		"LBRACKET", "RBRACKET", "EQUAL", "SEMI", "COLON", "COMMA", "DOT", "GREATER_THAN",
 		"LESS_THAN", "TRUE", "FALSE", "SUM", "ABS", "AVG", "ADD", "DIVIDE",
 		"MULTIPLY", "EQ", "CONCAT", "GT", "GTE", "LAMBDA", "INT", "DECIMAL",
 		"DIGIT", "STRING", "IF", "IDENTIFIER", "WS", "EOS",
 	}
-	staticData.ruleNames = []string{
+	staticData.RuleNames = []string{
 		"PLUS", "MINUS", "DIV", "MULT", "LPAREN", "RPAREN", "LCURLY", "RCURLY",
 		"LBRACKET", "RBRACKET", "EQUAL", "SEMI", "COLON", "COMMA", "DOT", "GREATER_THAN",
 		"LESS_THAN", "TRUE", "FALSE", "SUM", "ABS", "AVG", "ADD", "DIVIDE",
 		"MULTIPLY", "EQ", "CONCAT", "GT", "GTE", "LAMBDA", "INT", "DECIMAL",
 		"DIGIT", "STRING", "ESC_SEQ", "DIGITS", "IF", "IDENTIFIER", "WS", "EOS",
 	}
-	staticData.predictionContextCache = antlr.NewPredictionContextCache()
+	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
 		4, 0, 38, 251, 6, -1, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2,
 		4, 7, 4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2,
@@ -192,7 +191,7 @@ func eqllexerLexerInit() {
 // NewEqlLexer(). You can call this function if you wish to initialize the static state ahead
 // of time.
 func EqlLexerInit() {
-	staticData := &eqllexerLexerStaticData
+	staticData := &EqlLexerLexerStaticData
 	staticData.once.Do(eqllexerLexerInit)
 }
 
@@ -201,13 +200,13 @@ func NewEqlLexer(input antlr.CharStream) *EqlLexer {
 	EqlLexerInit()
 	l := new(EqlLexer)
 	l.BaseLexer = antlr.NewBaseLexer(input)
-	staticData := &eqllexerLexerStaticData
-	l.Interpreter = antlr.NewLexerATNSimulator(l, staticData.atn, staticData.decisionToDFA, staticData.predictionContextCache)
-	l.channelNames = staticData.channelNames
-	l.modeNames = staticData.modeNames
-	l.RuleNames = staticData.ruleNames
-	l.LiteralNames = staticData.literalNames
-	l.SymbolicNames = staticData.symbolicNames
+	staticData := &EqlLexerLexerStaticData
+	l.Interpreter = antlr.NewLexerATNSimulator(l, staticData.atn, staticData.decisionToDFA, staticData.PredictionContextCache)
+	l.channelNames = staticData.ChannelNames
+	l.modeNames = staticData.ModeNames
+	l.RuleNames = staticData.RuleNames
+	l.LiteralNames = staticData.LiteralNames
+	l.SymbolicNames = staticData.SymbolicNames
 	l.GrammarFileName = "EqlLexer.g4"
 	// TODO: l.EOF = antlr.TokenEOF
 

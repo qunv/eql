@@ -1,7 +1,7 @@
 package eql
 
 import (
-	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
+	"github.com/antlr4-go/antlr/v4"
 	"github.com/qunv/eql/core"
 	"github.com/qunv/eql/core/action"
 	eqlantlr "github.com/qunv/eql/core/antlr"

@@ -2,7 +2,7 @@ package action
 
 import (
 	"errors"
-	antlr2 "github.com/antlr/antlr4/runtime/Go/antlr/v4"
+	antlr2 "github.com/antlr4-go/antlr/v4"
 	"github.com/qunv/eql/core/antlr"
 	"github.com/qunv/eql/core/utils"
 )
