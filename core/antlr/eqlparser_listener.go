@@ -13,6 +13,12 @@ type EqlParserListener interface {
 	// EnterStatement is called when entering the statement production.
 	EnterStatement(c *StatementContext)
 
+	// EnterDeclarement is called when entering the declarement production.
+	EnterDeclarement(c *DeclarementContext)
+
+	// EnterFunction is called when entering the function production.
+	EnterFunction(c *FunctionContext)
+
 	// EnterExpression is called when entering the expression production.
 	EnterExpression(c *ExpressionContext)
 
@@ -57,6 +63,12 @@ type EqlParserListener interface {
 
 	// ExitStatement is called when exiting the statement production.
 	ExitStatement(c *StatementContext)
+
+	// ExitDeclarement is called when exiting the declarement production.
+	ExitDeclarement(c *DeclarementContext)
+
+	// ExitFunction is called when exiting the function production.
+	ExitFunction(c *FunctionContext)
 
 	// ExitExpression is called when exiting the expression production.
 	ExitExpression(c *ExpressionContext)

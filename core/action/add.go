@@ -3,6 +3,7 @@ package action
 import (
 	"errors"
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/val"
 )
 
 type _add struct {
@@ -13,7 +14,7 @@ func add(ctx antlr.IActionSpecContext) Action {
 	return _add{ctx}
 }
 
-func (a _add) Evaluate(input EqlInput) (EqlValue, error) {
+func (a _add) Evaluate(input EqlInput) (val.EqlValue, error) {
 	if len(a.ctx.AllParam()) != 2 {
 		return nil, errors.New("len params just accept 2")
 	}

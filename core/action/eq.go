@@ -3,6 +3,7 @@ package action
 import (
 	"errors"
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/val"
 )
 
 type _eq struct {
@@ -13,7 +14,7 @@ func eq(ctx antlr.IActionSpecContext) Action {
 	return _eq{ctx}
 }
 
-func (e _eq) Evaluate(input EqlInput) (EqlValue, error) {
+func (e _eq) Evaluate(input EqlInput) (val.EqlValue, error) {
 	if len(e.ctx.AllParam()) != 2 {
 		return nil, errors.New("len params just accept 2")
 	}
@@ -26,5 +27,5 @@ func (e _eq) Evaluate(input EqlInput) (EqlValue, error) {
 		return nil, err
 	}
 
-	return NewEqlValue(val1.Value() == val2.Value()), nil
+	return val.NewEqlValue(val1.Value() == val2.Value()), nil
 }

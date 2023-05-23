@@ -4,7 +4,9 @@ import (
 	"errors"
 	antlr2 "github.com/antlr4-go/antlr/v4"
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/mem"
 	"github.com/qunv/eql/core/utils"
+	"github.com/qunv/eql/core/val"
 )
 
 type Expression struct {
@@ -19,7 +21,7 @@ func NewExpression(ctx antlr.IExpressionContext, input EqlInput) *Expression {
 	}
 }
 
-func (e *Expression) Evaluate() (EqlValue, error) {
+func (e *Expression) Evaluate() (val.EqlValue, error) {
 	ctx := e.ctx
 	if ctx.Compair() != nil {
 		return e.evaluateLogicalExpression(ctx)
@@ -27,7 +29,7 @@ func (e *Expression) Evaluate() (EqlValue, error) {
 	return e.evaluateExpression(ctx)
 }
 
-func (e *Expression) evaluateLogicalExpression(ctx antlr.IExpressionContext) (EqlValue, error) {
+func (e *Expression) evaluateLogicalExpression(ctx antlr.IExpressionContext) (val.EqlValue, error) {
 	if len(ctx.AllTerm()) != 1 && len(ctx.AllTerm()) != 2 {
 		return nil, errors.New("logical expression must contain 1 or 2 param")
 	}
@@ -53,22 +55,22 @@ func (e *Expression) evaluateLogicalExpression(ctx antlr.IExpressionContext) (Eq
 	}
 	if ctx.Compair().GREATER_THAN() != nil {
 		if ctx.Compair().EQUAL() != nil {
-			return NewEqlValue(param1.String() >= param2.String()), nil
+			return val.NewEqlValue(param1.String() >= param2.String()), nil
 		}
-		return NewEqlValue(param1.String() > param2.String()), nil
+		return val.NewEqlValue(param1.String() > param2.String()), nil
 	}
 
 	if ctx.Compair().LESS_THAN() != nil {
 		if ctx.Compair().EQUAL() != nil {
-			return NewEqlValue(param1.String() <= param2.String()), nil
+			return val.NewEqlValue(param1.String() <= param2.String()), nil
 		}
-		return NewEqlValue(param1.String() < param2.String()), nil
+		return val.NewEqlValue(param1.String() < param2.String()), nil
 	}
 
-	return NewEqlValue(param1.String() == param2.String()), nil
+	return val.NewEqlValue(param1.String() == param2.String()), nil
 }
 
-func (e *Expression) evaluateExpression(ctx antlr.IExpressionContext) (EqlValue, error) {
+func (e *Expression) evaluateExpression(ctx antlr.IExpressionContext) (val.EqlValue, error) {
 	result, err := e.evaluateTerm(ctx.Term(0))
 	if err != nil {
 		return nil, err
@@ -92,29 +94,29 @@ func (e *Expression) evaluateExpression(ctx antlr.IExpressionContext) (EqlValue,
 	return result, nil
 }
 
-func (e *Expression) evaluateActSpec(ctx antlr.IActionSpecContext) (EqlValue, error) {
+func (e *Expression) evaluateActSpec(ctx antlr.IActionSpecContext) (val.EqlValue, error) {
 	return GetActSpec(ctx).Evaluate(e.input)
 }
 
-func (e *Expression) evaluateFactor(ctx antlr.IFactorContext) (EqlValue, error) {
+func (e *Expression) evaluateFactor(ctx antlr.IFactorContext) (val.EqlValue, error) {
 	if ctx.Number() != nil {
-		return NewEqlValue(utils.GetNumber(ctx.Number())), nil
+		return val.NewEqlValue(utils.GetNumber(ctx.Number())), nil
 	}
 
 	if ctx.TRUE() != nil {
-		return NewEqlValue(true), nil
+		return val.NewEqlValue(true), nil
 	}
 
 	if ctx.FALSE() != nil {
-		return NewEqlValue(false), nil
+		return val.NewEqlValue(false), nil
 	}
 
 	if ctx.STRING() != nil {
 		str := ctx.STRING().GetText()
 		if len(str) <= 2 {
-			return NewEqlValue(""), nil
+			return val.NewEqlValue(""), nil
 		}
-		return NewEqlValue(str[1 : len(str)-1]), nil
+		return val.NewEqlValue(str[1 : len(str)-1]), nil
 	}
 
 	if ctx.ActionSpec() != nil {
@@ -126,13 +128,17 @@ func (e *Expression) evaluateFactor(ctx antlr.IFactorContext) (EqlValue, error) 
 		if err != nil {
 			return nil, err
 		}
-		return NewEqlValue(e.input.Get(row, col)), nil
+		return val.NewEqlValue(e.input.Get(row, col)), nil
+	}
+
+	if ctx.IDENTIFIER() != nil {
+		return mem.Get(ctx.IDENTIFIER().GetText()), nil
 	}
 
 	return NewExpression(ctx.Expression(), e.input).Evaluate()
 }
 
-func (e *Expression) evaluateTerm(ctx antlr.ITermContext) (EqlValue, error) {
+func (e *Expression) evaluateTerm(ctx antlr.ITermContext) (val.EqlValue, error) {
 	factors := ctx.AllFactor()
 
 	result, err := e.evaluateFactor(factors[0])

@@ -2,6 +2,7 @@ package action
 
 import (
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/val"
 )
 
 type _multiply struct {
@@ -12,7 +13,7 @@ func multiply(ctx antlr.IActionSpecContext) Action {
 	return _multiply{ctx}
 }
 
-func (d _multiply) Evaluate(input EqlInput) (EqlValue, error) {
+func (d _multiply) Evaluate(input EqlInput) (val.EqlValue, error) {
 	if len(d.ctx.AllParam()) != 2 {
 		panic("Len params just accept 2")
 	}
@@ -33,5 +34,5 @@ func (d _multiply) Evaluate(input EqlInput) (EqlValue, error) {
 	if err != nil {
 		return nil, err
 	}
-	return NewEqlValue(f1 * f2), nil
+	return val.NewEqlValue(f1 * f2), nil
 }

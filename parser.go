@@ -3,8 +3,8 @@ package eql
 import (
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/qunv/eql/core"
-	"github.com/qunv/eql/core/action"
 	eqlantlr "github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/val"
 )
 
 type Parser struct {
@@ -15,7 +15,7 @@ func NewEqlParser(input [][]string) *Parser {
 	return &Parser{input: input}
 }
 
-func (p *Parser) Exec(q string) (action.EqlValue, error) {
+func (p *Parser) Exec(q string) (val.EqlValue, error) {
 	input := antlr.NewInputStream(q)
 	lexer := eqlantlr.NewEqlLexer(input)
 	eqlParser := eqlantlr.NewEqlParser(antlr.NewCommonTokenStream(lexer, 0))

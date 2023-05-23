@@ -22,6 +22,9 @@ LESS_THAN               : '<';
 TRUE                    : 'TRUE';
 FALSE                   : 'FALSE';
 
+// functions
+PRINT                   : 'print';
+
 // math
 SUM                     : 'SUM';
 ABS                     : 'ABS';

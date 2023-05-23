@@ -3,6 +3,7 @@ package action
 import (
 	"errors"
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/val"
 )
 
 type _gte struct {
@@ -13,7 +14,7 @@ func gte(ctx antlr.IActionSpecContext) Action {
 	return _gte{ctx}
 }
 
-func (g _gte) Evaluate(input EqlInput) (EqlValue, error) {
+func (g _gte) Evaluate(input EqlInput) (val.EqlValue, error) {
 	if len(g.ctx.AllParam()) != 2 {
 		return nil, errors.New("len params just accept 2")
 	}
@@ -26,5 +27,5 @@ func (g _gte) Evaluate(input EqlInput) (EqlValue, error) {
 		return nil, err
 	}
 
-	return NewEqlValue(val1.String() >= val2.String()), nil
+	return val.NewEqlValue(val1.String() >= val2.String()), nil
 }

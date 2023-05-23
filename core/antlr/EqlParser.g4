@@ -9,6 +9,15 @@ program: statement+;
 
 statement
     : expression
+    | declarement
+    | function
+    ;
+
+declarement
+    : (def | IDENTIFIER) COLON EQUAL expression
+    ;
+function
+    : PRINT LPAREN expression RPAREN
     ;
 
 expression
