@@ -3,9 +3,7 @@ package main
 import (
 	"encoding/csv"
 	"flag"
-	"github.com/antlr4-go/antlr/v4"
-	"github.com/qunv/eql/core"
-	eqlantlr "github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql"
 	"log"
 	"os"
 	"regexp"
@@ -39,25 +37,14 @@ func main() {
 			log.Fatal("no csv file")
 		}
 		data := initData(*csvPath)
-		run(executedFile, data)
+		parser := eql.NewEqlParser(data)
+		if err = parser.Execf(executedFile); err != nil {
+			log.Fatal(err.Error())
+		}
 	default:
 		log.Fatal()
 	}
 
-}
-
-func run(eqlFile string, data [][]string) {
-	input, err := antlr.NewFileStream(eqlFile)
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-	lexer := eqlantlr.NewEqlLexer(input)
-	eqlParser := eqlantlr.NewEqlParser(antlr.NewCommonTokenStream(lexer, 0))
-	tree := eqlParser.Program()
-
-	listener := core.NewEqlInterpreter(data)
-
-	antlr.ParseTreeWalkerDefault.Walk(listener, tree)
 }
 
 func initData(csvPath string) [][]string {
