@@ -9,6 +9,15 @@ program: statement+;
 
 statement
     : expression
+    | declarement
+    | function
+    ;
+
+declarement
+    : (cell | IDENT) COLON EQUAL expression
+    ;
+function
+    : PRINT LPAREN expression RPAREN
     ;
 
 expression
@@ -54,9 +63,9 @@ logical
     ;
 
 
-inputRange: def COLON def;
+inputRange: cell COLON cell;
 
-def: IDENTIFIER INT;
+cell: ALPHABET INT;
 
 number
     : INT
@@ -65,11 +74,11 @@ number
 
 factor
     : number
-    | def
+    | cell
     | actionSpec
     | TRUE
     | FALSE
-    | IDENTIFIER
+    | IDENT
     | STRING
     | LPAREN expression RPAREN
     ;

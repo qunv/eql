@@ -2,6 +2,7 @@ package action
 
 import (
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/val"
 )
 
 type _sum struct {
@@ -14,18 +15,18 @@ func sum(ctx antlr.IActionSpecContext) Action {
 	}
 }
 
-func (s _sum) Evaluate(input EqlInput) (EqlValue, error) {
+func (s _sum) Evaluate(input EqlInput) (val.EqlValue, error) {
 	params := s.ctx.AllParam()
-	f := func(values []EqlValue) (EqlValue, error) {
-		r := NewEqlValue(0.0)
-		for _, val := range values {
-			if err := r.Add(val); err != nil {
+	f := func(values []val.EqlValue) (val.EqlValue, error) {
+		r := val.NewEqlValue(0.0)
+		for _, value := range values {
+			if err := r.Add(value); err != nil {
 				return nil, err
 			}
 		}
 		return r, nil
 	}
-	result := NewEqlValue(0.0)
+	result := val.NewEqlValue(0.0)
 	for _, p := range params {
 		par, err := param(p, f).evaluate(input)
 		if err != nil {

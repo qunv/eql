@@ -19,8 +19,12 @@ COMMA                   : ',';
 DOT                     : '.';
 GREATER_THAN            : '>';
 LESS_THAN               : '<';
+DOLAR                   : '$';
 TRUE                    : 'TRUE';
 FALSE                   : 'FALSE';
+
+// functions
+PRINT                   : 'print';
 
 // math
 SUM                     : 'SUM';
@@ -49,7 +53,9 @@ fragment DIGITS: DIGIT+;
 // logical
 IF                      : 'IF';
 
-IDENTIFIER              : [a-zA-Z]+;
+ALPHABET                : [a-zA-Z];
+
+IDENT                   : DOLAR([a-zA-Z0-9_]+);
 
 WS                      : [ \t\r\n]+ -> skip;
 

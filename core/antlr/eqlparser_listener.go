@@ -13,6 +13,12 @@ type EqlParserListener interface {
 	// EnterStatement is called when entering the statement production.
 	EnterStatement(c *StatementContext)
 
+	// EnterDeclarement is called when entering the declarement production.
+	EnterDeclarement(c *DeclarementContext)
+
+	// EnterFunction is called when entering the function production.
+	EnterFunction(c *FunctionContext)
+
 	// EnterExpression is called when entering the expression production.
 	EnterExpression(c *ExpressionContext)
 
@@ -43,8 +49,8 @@ type EqlParserListener interface {
 	// EnterInputRange is called when entering the inputRange production.
 	EnterInputRange(c *InputRangeContext)
 
-	// EnterDef is called when entering the def production.
-	EnterDef(c *DefContext)
+	// EnterCell is called when entering the cell production.
+	EnterCell(c *CellContext)
 
 	// EnterNumber is called when entering the number production.
 	EnterNumber(c *NumberContext)
@@ -57,6 +63,12 @@ type EqlParserListener interface {
 
 	// ExitStatement is called when exiting the statement production.
 	ExitStatement(c *StatementContext)
+
+	// ExitDeclarement is called when exiting the declarement production.
+	ExitDeclarement(c *DeclarementContext)
+
+	// ExitFunction is called when exiting the function production.
+	ExitFunction(c *FunctionContext)
 
 	// ExitExpression is called when exiting the expression production.
 	ExitExpression(c *ExpressionContext)
@@ -88,8 +100,8 @@ type EqlParserListener interface {
 	// ExitInputRange is called when exiting the inputRange production.
 	ExitInputRange(c *InputRangeContext)
 
-	// ExitDef is called when exiting the def production.
-	ExitDef(c *DefContext)
+	// ExitCell is called when exiting the cell production.
+	ExitCell(c *CellContext)
 
 	// ExitNumber is called when exiting the number production.
 	ExitNumber(c *NumberContext)

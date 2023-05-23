@@ -2,6 +2,7 @@ package action
 
 import (
 	"errors"
+	"github.com/qunv/eql/core/val"
 
 	"github.com/qunv/eql/core/antlr"
 )
@@ -14,7 +15,7 @@ func gt(ctx antlr.IActionSpecContext) Action {
 	return _gt{ctx}
 }
 
-func (g _gt) Evaluate(input EqlInput) (EqlValue, error) {
+func (g _gt) Evaluate(input EqlInput) (val.EqlValue, error) {
 	if len(g.ctx.AllParam()) != 2 {
 		return nil, errors.New("len params just accept 2")
 	}
@@ -27,5 +28,5 @@ func (g _gt) Evaluate(input EqlInput) (EqlValue, error) {
 		return nil, err
 	}
 
-	return NewEqlValue(val1.String() > val2.String()), nil
+	return val.NewEqlValue(val1.String() > val2.String()), nil
 }

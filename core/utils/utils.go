@@ -10,8 +10,8 @@ func GetColId(alias rune) int {
 	return int(alias - 64)
 }
 
-func GetRowAndColum(ctx antlr.IDefContext) (int, int, error) {
-	col := []rune(ctx.IDENTIFIER().GetText())
+func GetRowAndColum(ctx antlr.ICellContext) (int, int, error) {
+	col := []rune(ctx.ALPHABET().GetText())
 	row, _ := strconv.Atoi(ctx.INT().GetText())
 	if row <= 0 {
 		return 0, 0, errors.New("row index not accept 0 or negative number")

@@ -3,6 +3,7 @@ package action
 import (
 	"errors"
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/val"
 	"reflect"
 )
 
@@ -14,7 +15,7 @@ func if_(ctx antlr.IActionSpecContext) Action {
 	return _if{ctx}
 }
 
-func (i _if) Evaluate(input EqlInput) (EqlValue, error) {
+func (i _if) Evaluate(input EqlInput) (val.EqlValue, error) {
 	if len(i.ctx.AllParam()) != 3 {
 		return nil, errors.New("len params just accept 2")
 	}

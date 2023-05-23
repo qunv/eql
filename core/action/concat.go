@@ -3,6 +3,7 @@ package action
 import (
 	"fmt"
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/val"
 )
 
 type _concat struct {
@@ -13,7 +14,7 @@ func concat(ctx antlr.IActionSpecContext) Action {
 	return _concat{ctx}
 }
 
-func (c _concat) Evaluate(input EqlInput) (EqlValue, error) {
+func (c _concat) Evaluate(input EqlInput) (val.EqlValue, error) {
 	if len(c.ctx.AllParam()) != 2 {
 		panic("Len params just accept 2")
 	}
@@ -26,5 +27,5 @@ func (c _concat) Evaluate(input EqlInput) (EqlValue, error) {
 	if err != nil {
 		return nil, err
 	}
-	return NewEqlValue(fmt.Sprintf("%v%v", val1.Value(), val2.Value())), nil
+	return val.NewEqlValue(fmt.Sprintf("%v%v", val1.Value(), val2.Value())), nil
 }
