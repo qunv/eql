@@ -56,8 +56,8 @@ func (e *EqlInterpreter) evaluateFunction(ctx antlr.IFunctionContext) {
 }
 
 func (e *EqlInterpreter) evaluateDeclarement(ctx antlr.IDeclarementContext) {
-	if ctx.Def() != nil {
-		row, col, err := utils.GetRowAndColum(ctx.Def())
+	if ctx.Cell() != nil {
+		row, col, err := utils.GetRowAndColum(ctx.Cell())
 		if err != nil {
 			e.err = err
 			return
@@ -70,8 +70,8 @@ func (e *EqlInterpreter) evaluateDeclarement(ctx antlr.IDeclarementContext) {
 		e.input.Set(row, col, value.String())
 		return
 	}
-	if ctx.IDENTIFIER() != nil {
-		id := ctx.IDENTIFIER().GetText()
+	if ctx.IDENT() != nil {
+		id := ctx.IDENT().GetText()
 		value, err := e.evaluateExpression(ctx.Expression())
 		if err != nil {
 			e.err = err

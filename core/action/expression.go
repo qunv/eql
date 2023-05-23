@@ -123,16 +123,16 @@ func (e *Expression) evaluateFactor(ctx antlr.IFactorContext) (val.EqlValue, err
 		return e.evaluateActSpec(ctx.ActionSpec())
 	}
 
-	if ctx.Def() != nil {
-		row, col, err := utils.GetRowAndColum(ctx.Def())
+	if ctx.Cell() != nil {
+		row, col, err := utils.GetRowAndColum(ctx.Cell())
 		if err != nil {
 			return nil, err
 		}
 		return val.NewEqlValue(e.input.Get(row, col)), nil
 	}
 
-	if ctx.IDENTIFIER() != nil {
-		return mem.Get(ctx.IDENTIFIER().GetText()), nil
+	if ctx.IDENT() != nil {
+		return mem.Get(ctx.IDENT().GetText()), nil
 	}
 
 	return NewExpression(ctx.Expression(), e.input).Evaluate()

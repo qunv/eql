@@ -22,12 +22,12 @@ func param(ctx antlr.IParamContext, f fn) _param {
 
 func (e _param) evaluate(input EqlInput) (val.EqlValue, error) {
 	if e.ctx.InputRange() != nil {
-		magic1 := e.ctx.InputRange().Def(0)
+		magic1 := e.ctx.InputRange().Cell(0)
 		row1, col1, err := utils.GetRowAndColum(magic1)
 		if err != nil {
 			return nil, err
 		}
-		magic2 := e.ctx.InputRange().Def(1)
+		magic2 := e.ctx.InputRange().Cell(1)
 		row2, col2, err := utils.GetRowAndColum(magic2)
 		if err != nil {
 			return nil, err

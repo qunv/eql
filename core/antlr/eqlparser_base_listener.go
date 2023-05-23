@@ -104,11 +104,11 @@ func (s *BaseEqlParserListener) EnterInputRange(ctx *InputRangeContext) {}
 // ExitInputRange is called when production inputRange is exited.
 func (s *BaseEqlParserListener) ExitInputRange(ctx *InputRangeContext) {}
 
-// EnterDef is called when production def is entered.
-func (s *BaseEqlParserListener) EnterDef(ctx *DefContext) {}
+// EnterCell is called when production cell is entered.
+func (s *BaseEqlParserListener) EnterCell(ctx *CellContext) {}
 
-// ExitDef is called when production def is exited.
-func (s *BaseEqlParserListener) ExitDef(ctx *DefContext) {}
+// ExitCell is called when production cell is exited.
+func (s *BaseEqlParserListener) ExitCell(ctx *CellContext) {}
 
 // EnterNumber is called when production number is entered.
 func (s *BaseEqlParserListener) EnterNumber(ctx *NumberContext) {}
