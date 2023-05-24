@@ -8,7 +8,7 @@ import (
 type Mem interface {
 	Set(key string, value val.EqlValue)
 	Get(key string) val.EqlValue
-	Parent() Mem
+	GetParent() Mem
 }
 
 type _mem struct {
@@ -29,11 +29,15 @@ func (m *_mem) Set(key string, value val.EqlValue) {
 func (m *_mem) Get(key string) val.EqlValue {
 	value, ok := m.m.Load(key)
 	if ok {
-		return value.(val.EqlValue)
+		v := value.(val.EqlValue)
+		return val.NewEqlValue(v.Value())
+	}
+	if m.parent != nil {
+		return m.parent.Get(key)
 	}
 	return nil
 }
 
-func (m *_mem) Parent() Mem {
+func (m *_mem) GetParent() Mem {
 	return m.parent
 }

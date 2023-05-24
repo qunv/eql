@@ -1,3 +1,11 @@
-A1 := SUM(A1:A2) + 1
 $x := 1
+
+print("Hỏi: Quân có đẹp trai không")
+
+($c range A1:A2) -> {
+    $c := $x + 100
+    $d := IF($c > 100, "Trả lời: Đẹp tuyệt cmn vời", "Trả lời: Không, chê")
+    print($d)
+}
+
 print(A1 + $x + SUM(A1:A2))

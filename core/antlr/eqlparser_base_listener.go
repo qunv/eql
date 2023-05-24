@@ -44,6 +44,12 @@ func (s *BaseEqlParserListener) EnterFunction(ctx *FunctionContext) {}
 // ExitFunction is called when production function is exited.
 func (s *BaseEqlParserListener) ExitFunction(ctx *FunctionContext) {}
 
+// EnterLoop is called when production loop is entered.
+func (s *BaseEqlParserListener) EnterLoop(ctx *LoopContext) {}
+
+// ExitLoop is called when production loop is exited.
+func (s *BaseEqlParserListener) ExitLoop(ctx *LoopContext) {}
+
 // EnterExpression is called when production expression is entered.
 func (s *BaseEqlParserListener) EnterExpression(ctx *ExpressionContext) {}
 

@@ -11,7 +11,7 @@ statement
     : expression
     | declarement
     | function
-    | range
+    | loop
     ;
 
 declarement
@@ -21,7 +21,9 @@ function
     : PRINT LPAREN expression RPAREN
     ;
 
-range: LPAREN IDENT RANGE inputRange RPAREN (MINUS GREATER_THAN) LCURLY (statement+)? RCURLY;
+loop
+    : LPAREN IDENT RANGE inputRange RPAREN (MINUS GREATER_THAN) LCURLY (statement+)? RCURLY
+    ;
 
 expression
     : term ((PLUS | MINUS) term)*

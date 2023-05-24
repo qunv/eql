@@ -28,7 +28,6 @@ func void() (val.EqlValue, error) {
 }
 
 func (s *Statement) Evaluate() (val.EqlValue, error) {
-	s.mem.Set("test-store", val.NewEqlValue("test-store"))
 	if s.ctx.Expression() != nil {
 		return s.evaluateExpression(s.ctx.Expression())
 	}
@@ -37,6 +36,9 @@ func (s *Statement) Evaluate() (val.EqlValue, error) {
 	}
 	if s.ctx.Function() != nil {
 		return nil, s.evaluateFunction(s.ctx.Function())
+	}
+	if s.ctx.Loop() != nil {
+		return nil, s.evaluateLoop(s.ctx.Loop())
 	}
 	return void()
 }
@@ -85,4 +87,66 @@ func (s *Statement) evaluateExpression(ctx antlr.IExpressionContext) (val.EqlVal
 		return nil, err
 	}
 	return result, nil
+}
+
+func (s *Statement) evaluateLoop(ctx antlr.ILoopContext) error {
+	store := mem.NewMemory(s.mem)
+	alias := ctx.IDENT().GetText()
+
+	magic1 := ctx.InputRange().Cell(0)
+	row1, col1, err := utils.GetRowAndColum(magic1)
+	if err != nil {
+		return err
+	}
+	magic2 := ctx.InputRange().Cell(1)
+	row2, col2, err := utils.GetRowAndColum(magic2)
+	if err != nil {
+		return err
+	}
+
+	stmtCtxs := ctx.AllStatement()
+	for i := row1; i <= row2; i++ {
+		if col1 != col2 {
+			for j := col1; j <= col2; j++ {
+				err = s.handleLoopBody(stmtCtxs, alias, store, i, j)
+				if err != nil {
+					return err
+				}
+			}
+		} else {
+			err = s.handleLoopBody(stmtCtxs, alias, store, i, col1)
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
+}
+
+func (s *Statement) handleLoopBody(
+	stmtCtxs []antlr.IStatementContext,
+	alias string,
+	store mem.Mem,
+	row, col int,
+) error {
+	for _, stmtCtx := range stmtCtxs {
+		if stmtCtx.Declarement() != nil &&
+			stmtCtx.Declarement().IDENT().GetText() == alias {
+			expr := newExpression(stmtCtx.Declarement().Expression(), s.input, store)
+			result, err := expr.Evaluate()
+			if err != nil {
+				return err
+			}
+			s.input.Set(row, col, result.String())
+			store.Set(alias, result)
+			continue
+		}
+		stmt := NewStatement(stmtCtx, s.input, store)
+		_, err := stmt.Evaluate()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
