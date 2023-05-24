@@ -311,6 +311,14 @@ func TestParser_Exec_SUM(t *testing.T) {
 				assert.Equal(t, "9", value.String())
 			},
 		},
+		{
+			name: "Test SUM number and identify should return success",
+			eql:  "SUM(A1:C2)",
+			assert: func(value val.EqlValue, err error) {
+				assert.Nil(t, err)
+				assert.Equal(t, "12", value.String())
+			},
+		},
 	}
 
 	for _, tt := range tests {

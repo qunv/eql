@@ -35,7 +35,9 @@ func (e _param) evaluate(input EqlInput) (val.EqlValue, error) {
 		var values []val.EqlValue
 		for i := row1; i <= row2; i++ {
 			if col1 != col2 {
-				values = append(values, val.NewEqlValue(input.Get(i, col1)), val.NewEqlValue(input.Get(i, col2)))
+				for j := col1; j <= col2; j++ {
+					values = append(values, val.NewEqlValue(input.Get(i, j)))
+				}
 			} else {
 				values = append(values, val.NewEqlValue(input.Get(i, col1)))
 			}
