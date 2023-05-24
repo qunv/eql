@@ -5,20 +5,35 @@ import (
 	"sync"
 )
 
-var store = &_mem{}
+type Mem interface {
+	Set(key string, value val.EqlValue)
+	Get(key string) val.EqlValue
+	Parent() Mem
+}
 
 type _mem struct {
-	m sync.Map
+	m      sync.Map
+	parent Mem
 }
 
-func Set(key string, value val.EqlValue) {
-	store.m.Store(key, value)
+func NewMemory(parent Mem) Mem {
+	return &_mem{
+		parent: parent,
+	}
 }
 
-func Get(key string) val.EqlValue {
-	value, ok := store.m.Load(key)
+func (m *_mem) Set(key string, value val.EqlValue) {
+	m.m.Store(key, value)
+}
+
+func (m *_mem) Get(key string) val.EqlValue {
+	value, ok := m.m.Load(key)
 	if ok {
 		return value.(val.EqlValue)
 	}
 	return nil
+}
+
+func (m *_mem) Parent() Mem {
+	return m.parent
 }

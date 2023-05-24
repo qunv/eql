@@ -3,15 +3,17 @@ package action
 import (
 	"errors"
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/mem"
 	"github.com/qunv/eql/core/val"
 )
 
 type _divide struct {
-	ctx antlr.IActionSpecContext
+	ctx   antlr.IActionSpecContext
+	store mem.Mem
 }
 
-func divide(ctx antlr.IActionSpecContext) Action {
-	return _divide{ctx}
+func divide(ctx antlr.IActionSpecContext, store mem.Mem) Action {
+	return _divide{ctx, store}
 }
 
 func (d _divide) Evaluate(input EqlInput) (val.EqlValue, error) {
@@ -19,7 +21,7 @@ func (d _divide) Evaluate(input EqlInput) (val.EqlValue, error) {
 		return nil, errors.New("len params just accept 2")
 	}
 
-	val1, err := param(d.ctx.Param(0), nil).evaluate(input)
+	val1, err := param(d.ctx.Param(0), nil, d.store).evaluate(input)
 	if err != nil {
 		return nil, err
 	}
@@ -27,7 +29,7 @@ func (d _divide) Evaluate(input EqlInput) (val.EqlValue, error) {
 	if err != nil {
 		return nil, err
 	}
-	val2, err := param(d.ctx.Param(1), nil).evaluate(input)
+	val2, err := param(d.ctx.Param(1), nil, d.store).evaluate(input)
 	if err != nil {
 		return nil, err
 	}

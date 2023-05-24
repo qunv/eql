@@ -2,16 +2,19 @@ package action
 
 import (
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/mem"
 	"github.com/qunv/eql/core/val"
 )
 
 type _avg struct {
-	ctx antlr.IActionSpecContext
+	ctx   antlr.IActionSpecContext
+	store mem.Mem
 }
 
-func avg(ctx antlr.IActionSpecContext) Action {
+func avg(ctx antlr.IActionSpecContext, store mem.Mem) Action {
 	return _avg{
-		ctx: ctx,
+		ctx:   ctx,
+		store: store,
 	}
 }
 
@@ -35,7 +38,7 @@ func (a _avg) Evaluate(input EqlInput) (val.EqlValue, error) {
 	}
 	lenValue := val.NewEqlValue(float64(len(params)))
 	for _, p := range params {
-		par, err := param(p, f).evaluate(input)
+		par, err := param(p, f, a.store).evaluate(input)
 		if err != nil {
 			return nil, err
 		}

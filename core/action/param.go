@@ -2,6 +2,7 @@ package action
 
 import (
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/mem"
 	"github.com/qunv/eql/core/utils"
 	"github.com/qunv/eql/core/val"
 )
@@ -9,14 +10,16 @@ import (
 type fn func([]val.EqlValue) (val.EqlValue, error)
 
 type _param struct {
-	ctx antlr.IParamContext
-	f   fn
+	ctx   antlr.IParamContext
+	store mem.Mem
+	f     fn
 }
 
-func param(ctx antlr.IParamContext, f fn) _param {
+func param(ctx antlr.IParamContext, f fn, store mem.Mem) _param {
 	return _param{
-		ctx: ctx,
-		f:   f,
+		ctx:   ctx,
+		f:     f,
+		store: store,
 	}
 }
 
@@ -44,5 +47,5 @@ func (e _param) evaluate(input EqlInput) (val.EqlValue, error) {
 		}
 		return e.f(values)
 	}
-	return NewExpression(e.ctx.Expression(), input).Evaluate()
+	return newExpression(e.ctx.Expression(), input, e.store).Evaluate()
 }

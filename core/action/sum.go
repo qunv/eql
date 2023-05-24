@@ -2,16 +2,19 @@ package action
 
 import (
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/mem"
 	"github.com/qunv/eql/core/val"
 )
 
 type _sum struct {
-	ctx antlr.IActionSpecContext
+	ctx   antlr.IActionSpecContext
+	store mem.Mem
 }
 
-func sum(ctx antlr.IActionSpecContext) Action {
+func sum(ctx antlr.IActionSpecContext, store mem.Mem) Action {
 	return _sum{
-		ctx: ctx,
+		ctx:   ctx,
+		store: store,
 	}
 }
 
@@ -28,7 +31,7 @@ func (s _sum) Evaluate(input EqlInput) (val.EqlValue, error) {
 	}
 	result := val.NewEqlValue(0.0)
 	for _, p := range params {
-		par, err := param(p, f).evaluate(input)
+		par, err := param(p, f, s.store).evaluate(input)
 		if err != nil {
 			return nil, err
 		}
