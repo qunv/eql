@@ -130,6 +130,7 @@ func (s *Statement) handleLoopBody(
 	store mem.Mem,
 	row, col int,
 ) error {
+	store.Set(alias, val.NewEqlValue(s.input.Get(row, col)))
 	for _, stmtCtx := range stmtCtxs {
 		if stmtCtx.Declarement() != nil &&
 			stmtCtx.Declarement().IDENT().GetText() == alias {
