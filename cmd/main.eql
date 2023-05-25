@@ -13,9 +13,10 @@ print("Hỏi: Quân có đẹp trai không")
          ($e range C1:C2) -> {
             $test := ADD($e, AVG(A1:B2))
             print(CONCAT("loop3: ", $test))
+            $x := 1111
          }
     }
     print($d)
 }
-
+print($x)
 print(A1 + $x + SUM(A1:A2))
