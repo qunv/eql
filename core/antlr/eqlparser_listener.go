@@ -19,6 +19,9 @@ type EqlParserListener interface {
 	// EnterFunction is called when entering the function production.
 	EnterFunction(c *FunctionContext)
 
+	// EnterLoop is called when entering the loop production.
+	EnterLoop(c *LoopContext)
+
 	// EnterExpression is called when entering the expression production.
 	EnterExpression(c *ExpressionContext)
 
@@ -69,6 +72,9 @@ type EqlParserListener interface {
 
 	// ExitFunction is called when exiting the function production.
 	ExitFunction(c *FunctionContext)
+
+	// ExitLoop is called when exiting the loop production.
+	ExitLoop(c *LoopContext)
 
 	// ExitExpression is called when exiting the expression production.
 	ExitExpression(c *ExpressionContext)

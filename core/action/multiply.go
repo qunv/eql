@@ -2,15 +2,17 @@ package action
 
 import (
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/mem"
 	"github.com/qunv/eql/core/val"
 )
 
 type _multiply struct {
-	ctx antlr.IActionSpecContext
+	ctx   antlr.IActionSpecContext
+	store mem.Mem
 }
 
-func multiply(ctx antlr.IActionSpecContext) Action {
-	return _multiply{ctx}
+func multiply(ctx antlr.IActionSpecContext, store mem.Mem) Action {
+	return _multiply{ctx, store}
 }
 
 func (d _multiply) Evaluate(input EqlInput) (val.EqlValue, error) {
@@ -18,7 +20,7 @@ func (d _multiply) Evaluate(input EqlInput) (val.EqlValue, error) {
 		panic("Len params just accept 2")
 	}
 
-	val1, err := param(d.ctx.Param(0), nil).evaluate(input)
+	val1, err := param(d.ctx.Param(0), nil, d.store).evaluate(input)
 	if err != nil {
 		return nil, err
 	}
@@ -26,7 +28,7 @@ func (d _multiply) Evaluate(input EqlInput) (val.EqlValue, error) {
 	if err != nil {
 		return nil, err
 	}
-	val2, err := param(d.ctx.Param(1), nil).evaluate(input)
+	val2, err := param(d.ctx.Param(1), nil, d.store).evaluate(input)
 	if err != nil {
 		return nil, err
 	}

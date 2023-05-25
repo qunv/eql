@@ -38,7 +38,7 @@ func main() {
 		}
 		data := initData(*csvPath)
 		parser := eql.NewEqlParser(data)
-		if err = parser.Execf(executedFile); err != nil {
+		if err := parser.Execf(executedFile); err != nil {
 			log.Fatal(err.Error())
 		}
 	default:

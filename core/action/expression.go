@@ -9,19 +9,21 @@ import (
 	"github.com/qunv/eql/core/val"
 )
 
-type Expression struct {
+type expression struct {
 	ctx   antlr.IExpressionContext
 	input EqlInput
+	store mem.Mem
 }
 
-func NewExpression(ctx antlr.IExpressionContext, input EqlInput) *Expression {
-	return &Expression{
+func newExpression(ctx antlr.IExpressionContext, input EqlInput, store mem.Mem) *expression {
+	return &expression{
 		ctx:   ctx,
 		input: input,
+		store: store,
 	}
 }
 
-func (e *Expression) Evaluate() (val.EqlValue, error) {
+func (e *expression) Evaluate() (val.EqlValue, error) {
 	ctx := e.ctx
 	if ctx.Compair() != nil {
 		return e.evaluateLogicalExpression(ctx)
@@ -29,7 +31,7 @@ func (e *Expression) Evaluate() (val.EqlValue, error) {
 	return e.evaluateExpression(ctx)
 }
 
-func (e *Expression) evaluateLogicalExpression(ctx antlr.IExpressionContext) (val.EqlValue, error) {
+func (e *expression) evaluateLogicalExpression(ctx antlr.IExpressionContext) (val.EqlValue, error) {
 	if len(ctx.AllTerm()) != 1 && len(ctx.AllTerm()) != 2 {
 		return nil, errors.New("logical expression must contain 1 or 2 param")
 	}
@@ -70,7 +72,7 @@ func (e *Expression) evaluateLogicalExpression(ctx antlr.IExpressionContext) (va
 	return val.NewEqlValue(param1.String() == param2.String()), nil
 }
 
-func (e *Expression) evaluateExpression(ctx antlr.IExpressionContext) (val.EqlValue, error) {
+func (e *expression) evaluateExpression(ctx antlr.IExpressionContext) (val.EqlValue, error) {
 	result, err := e.evaluateTerm(ctx.Term(0))
 	if err != nil {
 		return nil, err
@@ -94,11 +96,11 @@ func (e *Expression) evaluateExpression(ctx antlr.IExpressionContext) (val.EqlVa
 	return result, nil
 }
 
-func (e *Expression) evaluateActSpec(ctx antlr.IActionSpecContext) (val.EqlValue, error) {
-	return GetActSpec(ctx).Evaluate(e.input)
+func (e *expression) evaluateActSpec(ctx antlr.IActionSpecContext) (val.EqlValue, error) {
+	return GetActSpec(ctx, e.store).Evaluate(e.input)
 }
 
-func (e *Expression) evaluateFactor(ctx antlr.IFactorContext) (val.EqlValue, error) {
+func (e *expression) evaluateFactor(ctx antlr.IFactorContext) (val.EqlValue, error) {
 	if ctx.Number() != nil {
 		return val.NewEqlValue(utils.GetNumber(ctx.Number())), nil
 	}
@@ -132,13 +134,13 @@ func (e *Expression) evaluateFactor(ctx antlr.IFactorContext) (val.EqlValue, err
 	}
 
 	if ctx.IDENT() != nil {
-		return mem.Get(ctx.IDENT().GetText()), nil
+		return e.store.Get(ctx.IDENT().GetText()), nil
 	}
 
-	return NewExpression(ctx.Expression(), e.input).Evaluate()
+	return newExpression(ctx.Expression(), e.input, e.store).Evaluate()
 }
 
-func (e *Expression) evaluateTerm(ctx antlr.ITermContext) (val.EqlValue, error) {
+func (e *expression) evaluateTerm(ctx antlr.ITermContext) (val.EqlValue, error) {
 	factors := ctx.AllFactor()
 
 	result, err := e.evaluateFactor(factors[0])

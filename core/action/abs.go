@@ -3,16 +3,18 @@ package action
 import (
 	"errors"
 	"github.com/qunv/eql/core/antlr"
+	"github.com/qunv/eql/core/mem"
 	"github.com/qunv/eql/core/val"
 	"math"
 )
 
 type _abs struct {
-	ctx antlr.IActionSpecContext
+	ctx   antlr.IActionSpecContext
+	store mem.Mem
 }
 
-func abs(ctx antlr.IActionSpecContext) Action {
-	return _abs{ctx}
+func abs(ctx antlr.IActionSpecContext, store mem.Mem) Action {
+	return _abs{ctx, store}
 }
 
 func (a _abs) Evaluate(input EqlInput) (val.EqlValue, error) {
@@ -22,7 +24,7 @@ func (a _abs) Evaluate(input EqlInput) (val.EqlValue, error) {
 	}
 
 	p := a.ctx.Param(0)
-	result, err := param(p, nil).evaluate(input)
+	result, err := param(p, nil, a.store).evaluate(input)
 
 	if err != nil {
 		return nil, err

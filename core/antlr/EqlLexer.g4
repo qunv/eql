@@ -23,8 +23,9 @@ DOLAR                   : '$';
 TRUE                    : 'TRUE';
 FALSE                   : 'FALSE';
 
-// functions
+// keyword
 PRINT                   : 'print';
+RANGE                   : 'range';
 
 // math
 SUM                     : 'SUM';
