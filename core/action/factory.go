@@ -44,6 +44,9 @@ func GetActSpec(ctx antlr.IActionSpecContext, store mem.Mem) Action {
 		if operator.GTE() != nil {
 			return gte(ctx, store)
 		}
+		if operator.LT() != nil {
+			return lt(ctx, store)
+		}
 	}
 
 	if logical := type_.Logical(); logical != nil {

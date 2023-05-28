@@ -41,6 +41,7 @@ CONCAT                  : 'CONCAT';
 GT                      : 'GT';
 GTE                     : 'GTE';
 LAMBDA                  : 'LAMBDA';
+LT                      : 'LT';
 
 INT                     : MINUS? DIGITS;
 DECIMAL                 : MINUS? DIGITS DOT DIGITS;

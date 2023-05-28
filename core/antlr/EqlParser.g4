@@ -60,6 +60,7 @@ operator
     | MULTIPLY
     | GT
     | GTE
+    | LT
     ;
 
 logical
