@@ -4,10 +4,10 @@ import (
 	"github.com/qunv/eql/core/antlr"
 	"github.com/qunv/eql/core/mem"
 	"github.com/qunv/eql/core/val"
-	"sync"
 )
 
 type _sum struct {
+	baseConcurrent
 	ctx   antlr.IActionSpecContext
 	store mem.Mem
 }
@@ -20,24 +20,23 @@ func sum(ctx antlr.IActionSpecContext, store mem.Mem) Action {
 }
 
 func (s _sum) Evaluate(input EqlInput) (val.EqlValue, error) {
-	donec := make(chan struct{})
-	defer close(donec)
+	doneChan := make(chan struct{})
+	defer close(doneChan)
 	params := s.ctx.AllParam()
-	result := val.NewEqlValue(0.0)
-	resultChan := s.evaluateParams(params, donec, input)
+	response := val.NewEqlValue(0.0)
+	resultChan := s.evaluateParams(params, doneChan, input)
 	for r := range resultChan {
 		if r.err != nil {
 			return nil, r.err
 		}
-		if err := result.Add(r.value); err != nil {
+		if err := response.Add(r.value); err != nil {
 			return nil, err
 		}
 	}
-	return result, nil
+	return response, nil
 }
 
-func (s _sum) evaluateParams(params []antlr.IParamContext, done <-chan struct{}, input EqlInput) <-chan sumResult {
-	c := make(chan sumResult)
+func (s _sum) evaluateParams(params []antlr.IParamContext, done <-chan struct{}, input EqlInput) <-chan result {
 	f := func(values []val.EqlValue) (val.EqlValue, error) {
 		r := val.NewEqlValue(0.0)
 		for _, value := range values {
@@ -47,29 +46,5 @@ func (s _sum) evaluateParams(params []antlr.IParamContext, done <-chan struct{},
 		}
 		return r, nil
 	}
-	go func() {
-		var wg sync.WaitGroup
-		for _, p := range params {
-			wg.Add(1)
-			go func(ctx antlr.IParamContext) {
-				defer wg.Done()
-				par, err := param(ctx, f, s.store).evaluate(input)
-				select {
-				case c <- sumResult{par, err}:
-				case <-done:
-					return
-				}
-			}(p)
-		}
-		go func() {
-			wg.Wait()
-			close(c)
-		}()
-	}()
-	return c
-}
-
-type sumResult struct {
-	value val.EqlValue
-	err   error
+	return s.baseConcurrent.evaluateParams(s.store, params, done, input, f)
 }
