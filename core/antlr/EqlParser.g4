@@ -8,14 +8,14 @@ options {
 program: statement+;
 
 statement
-    : expression
-    | declarement
+    : declarement
+    | expression
     | function
     | loop
     ;
 
 declarement
-    : (cell | IDENT) COLON EQUAL expression
+    : (cell | IDENT) EQUAL expression
     ;
 function
     : PRINT LPAREN expression RPAREN
