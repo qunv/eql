@@ -7,6 +7,7 @@ import (
 )
 
 type _avg struct {
+	baseConcurrent
 	ctx   antlr.IActionSpecContext
 	store mem.Mem
 }
@@ -19,8 +20,10 @@ func avg(ctx antlr.IActionSpecContext, store mem.Mem) Action {
 }
 
 func (a _avg) Evaluate(input EqlInput) (val.EqlValue, error) {
+	doneChan := make(chan struct{})
+	defer close(doneChan)
 	params := a.ctx.AllParam()
-	result := val.NewEqlValue(0.0)
+	response := val.NewEqlValue(0.0)
 	f := func(values []val.EqlValue) (val.EqlValue, error) {
 		r := val.NewEqlValue(0.0)
 		lenValue := val.NewEqlValue(float64(len(values)))
@@ -37,19 +40,19 @@ func (a _avg) Evaluate(input EqlInput) (val.EqlValue, error) {
 		return r, nil
 	}
 	lenValue := val.NewEqlValue(float64(len(params)))
-	for _, p := range params {
-		par, err := param(p, f, a.store).evaluate(input)
+	resultChan := a.baseConcurrent.evaluateParams(a.store, params, doneChan, input, f)
+	for r := range resultChan {
+		if r.err != nil {
+			return nil, r.err
+		}
+		err := r.value.Div(lenValue)
 		if err != nil {
 			return nil, err
 		}
-		err = par.Div(lenValue)
-		if err != nil {
-			return nil, err
-		}
-		err = result.Add(par)
+		err = response.Add(r.value)
 		if err != nil {
 			return nil, err
 		}
 	}
-	return result, nil
+	return response, nil
 }
