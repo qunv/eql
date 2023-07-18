@@ -1,5 +1,6 @@
 # eql
 
+[![From Vietnam with <3](https://raw.githubusercontent.com/webuild-community/badge/master/svg/love.svg)](https://webuild.community)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/qunv/eql)
 ![Build Status](https://github.com/qunv/eql/actions/workflows/test.yml/badge.svg?branch=main)
